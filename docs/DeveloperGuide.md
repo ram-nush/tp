@@ -303,6 +303,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 (For all use cases below, the **System** is `Hairy Pawter` and the **Actor** is the `user`, unless specified otherwise.
 A **Precondition** is that the system is displaying the list of clients and pets)
 
+
 **Use case 1: Add a client and their pet**
 
 **MSS**
@@ -358,7 +359,9 @@ A **Precondition** is that the system is displaying the list of clients and pets
 
     * 2a1. System shows an error message.
     * 2a2. User makes new request to add a pet.
+
       Steps 2a1-2a2 are repeated until the parameters are valid.
+
       Use case resumes at step 3.
 
 **Use case 3: Delete a client**
@@ -381,6 +384,7 @@ A **Precondition** is that the system is displaying the list of clients and pets
 
     * 2a1. System shows an error message.
     * 2a2. User makes new request to delete a client.
+
       Steps 2a1-2a2 are repeated until the parameters are valid.
 
       Use case resumes at step 3.
@@ -415,9 +419,9 @@ A **Precondition** is that the system is displaying the list of clients and pets
 **MSS**
 
 1.  User finds the client to edit.
-2.  User !!deletes the client(UC3)!!.
+2.  User deletes the client (UC3).
 3.  System deletes the client and displays the updated list.
-4.  User !!adds the updated client and their pets(UC1)!!.
+4.  User adds the updated client and their pets (UC1).
 5.  System adds the client and displays the updated list.
 
     Use case ends.
@@ -433,9 +437,9 @@ A **Precondition** is that the system is displaying the list of clients and pets
 **MSS**
 
 1.  User finds the pet to edit.
-2.  User !!deletes the pet(UC4)!!.
+2.  User deletes the pet (UC4).
 3.  System deletes the pet and displays the updated list.
-4.  User !!adds the updated pet to the client(UC2)!!.
+4.  User adds the updated pet to the client (UC2).
 5.  System adds the pet and displays the updated list.
 
     Use case ends.
@@ -446,7 +450,7 @@ A **Precondition** is that the system is displaying the list of clients and pets
 
      Use case ends.
 
-**Use case 7: Search for pet given client**
+**Use case 7: Search for pet of client**
 
 **MSS**
 
@@ -457,15 +461,11 @@ A **Precondition** is that the system is displaying the list of clients and pets
 
 **Extensions**
 
-* 1a. The client does not exist.
-
-     Use case ends.
-
 * 2a. The pet does not exist.
 
      Use case ends.
 
-**Use case 8: Search for client given pet**
+**Use case 8: Search for client who owns pet**
 
 **MSS**
 
@@ -476,13 +476,10 @@ A **Precondition** is that the system is displaying the list of clients and pets
 
 **Extensions**
 
-* 1a. The pet does not exist.
+* 1a. There are many pets with the same name.
 
-     Use case ends.
+    * 1a1. User decides which client is the one they want.
 
-* 1b. There are many pets with the same name.
-
-    * 1b1. User decides which client is the one they want.
       Use case resumes at step 2.
 
 ### Non-Functional Requirements
