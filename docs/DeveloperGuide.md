@@ -283,7 +283,11 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable typing simple commands
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
+
+* fast retrieval of pet and client information
+* clear pet -> client (owner) relationship tracking
+* more efficient info management using keyboard-driven commands
 
 
 ### User stories
