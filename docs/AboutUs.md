@@ -11,15 +11,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Feng Jiaqi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/fengjiaqi04.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/fengjiaqi04)]
 
-* Role: Project Advisor
+
+* Role: Developer
 
 ### Hong Eungi
 
@@ -29,15 +28,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[homepage](https://eungi-hong-digital-portfolio.vercel.app)]
 
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Testing
 
 ### Jotham Lim
 
 <img src="images/endersky.png" width="200px">
 
 [[github](http://github.com/endersky)]
-[[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Backend
@@ -48,14 +46,14 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/xiuxikwey)]
 
-* Role: Developer
-* Responsibilities: Dev Ops
+* Role: Team Lead
+* Responsibilities:
 
-### James Doe
+### Subramanian Ramasamy
 
 <img src="images/ram-nush.png" width="200px">
 
 [[github](http://github.com/ram-nush)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Documentation + UI
