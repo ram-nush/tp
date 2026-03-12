@@ -487,6 +487,11 @@ A **Precondition** is that the system is displaying the list of clients and pets
 1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. The response to any use action should become visible within 5 seconds.
+5. The app should not crash due to a user action (e.g., entering an invalid command, or deleting a person that does not exist).
+6. The app should not crash due to a system error (e.g., hard disk failure, or running out of memory).
+7. The app should not crash due to a programmer error (e.g., null pointer exception, or array index out of bounds exception).
+8. Should not have a steep learning curve for users who are reasonably comfortable using CLI apps.
 
 *{More to be added}*
 
@@ -494,6 +499,10 @@ A **Precondition** is that the system is displaying the list of clients and pets
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Above average typing speed**: 40 words per minute (wpm) or above, where a word is defined as 5 characters including spaces.
+* **Noticeable sluggishness**: A noticeable delay in the response of the app to user actions, such as a delay in showing the result of a command, or a delay in updating the UI after a command is executed.
+* **Reasonably comfortable using CLI apps**: A user who is familiar with using command-line interfaces (CLI) and can use them to perform basic tasks such as navigating directories, creating files, and running commands without needing extensive guidance or support.
+* **Crashing**: The app becoming unresponsive, freezing, or terminating unexpectedly due to an error or exception that is not handled properly by the app.
 
 --------------------------------------------------------------------------------------------------------------------
 
