@@ -48,6 +48,14 @@ public class UniquePersonList implements Iterable<Person> {
         internalList.add(toAdd);
     }
 
+    /**
+     * Returns the person with the given phone number.
+     * The person must exist in the list.
+     * @param phone The phone number to search for.
+     *
+     * @return The person with the given phone number.
+     * @throws PersonNotFoundException if no person with the given phone number is found.
+     */
     public Person searchByPhone(Phone phone) {
         requireNonNull(phone);
         return internalList.stream().filter(p -> p.getPhone().equals(phone))
@@ -55,6 +63,14 @@ public class UniquePersonList implements Iterable<Person> {
                 .orElseThrow(() -> new PersonNotFoundException());
     }
 
+    /**
+     * Adds a pet to the person with the given phone number.
+     * The person must exist in the list.
+     * @param pet The pet to add.
+     * @param ownerPhone The phone number of the owner of the pet.
+     *
+     * @throws PersonNotFoundException if no person with the given phone number is found.
+     */
     public void addPet(Pet pet, Phone ownerPhone) {
         requireAllNonNull(pet, ownerPhone);
         Person owner = searchByPhone(ownerPhone);

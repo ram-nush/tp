@@ -49,6 +49,12 @@ public class Messages {
         return builder.toString();
     }
 
+    /**
+     * Formats the {@code pet} for display to the user.
+     * @param pet The pet to format.
+     *
+     * @return The formatted string representation of the pet.
+     */
     public static String format(Pet pet) {
         final StringBuilder builder = new StringBuilder();
         builder.append(pet.getName());
