@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -17,74 +16,70 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Pet;
 import seedu.address.model.person.Phone;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.PetBuilder;
 
-public class AddPersonCommandTest {
+public class AddPetCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddPersonCommand(null));
+    public void constructor_nullPet_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddPetCommand(null, null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+    public void constructor_nullPhone_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddPetCommand(new Pet(new Name("Dog")), null));
+    }
 
-        CommandResult commandResult = new AddPersonCommand(validPerson).execute(modelStub);
+    @Test
+    public void execute_petAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingPetAdded modelStub = new ModelStubAcceptingPetAdded();
+        Pet validPet = new PetBuilder().build();
 
-        assertEquals(String.format(AddPersonCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
+        CommandResult commandResult = new AddPetCommand(validPet, new Phone("99999999")).execute(modelStub);
+
+        assertEquals(String.format(AddPetCommand.MESSAGE_SUCCESS, Messages.format(validPet)),
                 commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
-    }
-
-    @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddPersonCommand addPersonCommand = new AddPersonCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
-
-        assertThrows(CommandException.class,
-                AddPersonCommand.MESSAGE_DUPLICATE_PERSON, () -> addPersonCommand.execute(modelStub));
+        assertEquals(Arrays.asList(validPet), modelStub.petsAdded);
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddPersonCommand addAliceCommand = new AddPersonCommand(alice);
-        AddPersonCommand addBobCommand = new AddPersonCommand(bob);
+        Pet snoopy = new PetBuilder().withName("Snoopy").build();
+        Pet doggy = new PetBuilder().withName("Doggy").build();
+        AddPetCommand addSnoopyCommand = new AddPetCommand(snoopy, new Phone("99999999"));
+        AddPetCommand addDoggyCommand = new AddPetCommand(doggy, new Phone("99999999"));
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addSnoopyCommand.equals(addSnoopyCommand));
 
         // same values -> returns true
-        AddPersonCommand addAliceCommandCopy = new AddPersonCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddPetCommand addSnoopyCommandCopy = new AddPetCommand(snoopy, new Phone("99999999"));
+        assertTrue(addSnoopyCommand.equals(addSnoopyCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addSnoopyCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addSnoopyCommand.equals(null));
 
         // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addSnoopyCommand.equals(addDoggyCommand));
     }
 
     @Test
     public void toStringMethod() {
-        AddPersonCommand addPersonCommand = new AddPersonCommand(ALICE);
-        String expected = AddPersonCommand.class.getCanonicalName() + "{client=" + ALICE + "}";
-        assertEquals(expected, addPersonCommand.toString());
+        Pet snoopy = new PetBuilder().withName("Snoopy").build();
+        AddPetCommand addPetCommand = new AddPetCommand(snoopy, new Phone("99999999"));
+        String expected = AddPetCommand.class.getCanonicalName() + "{pet=" + snoopy + "}";
+        assertEquals(expected, addPetCommand.toString());
     }
 
     /**
@@ -187,19 +182,13 @@ public class AddPersonCommandTest {
     /**
      * A Model stub that always accept the person being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingPetAdded extends ModelStub {
+        final ArrayList<Pet> petsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
-        }
-
-        @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addPet(Pet pet, Phone phone) {
+            requireNonNull(pet);
+            petsAdded.add(pet);
         }
 
         @Override

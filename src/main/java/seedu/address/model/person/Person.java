@@ -82,10 +82,9 @@ public class Person {
         return pets;
     }
 
-    public boolean ownsPet(Pet pet) {
-        return pets.contains(pet);
-    }
-
+    /**
+     * Adds a pet to the person's pet set.
+     */
     public void addPet(Pet pet) {
         pets.add(pet);
     }
