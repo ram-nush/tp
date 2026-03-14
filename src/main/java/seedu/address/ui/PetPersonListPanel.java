@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -44,12 +45,19 @@ public class PetPersonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
+                VBox cardContainer = new VBox();
+                cardContainer.setSpacing(10);
+
                 if (person.getPets().isEmpty()) {
                     Pet noPet = new Pet(new Name("No pets for this person"));
                     setGraphic(new PetPersonCard(noPet, person, getIndex() + 1).getRoot());
                 } else {
-                    Pet firstPet = person.getPets().iterator().next();
-                    setGraphic(new PetPersonCard(firstPet, person, getIndex() + 1).getRoot());
+                    for (Pet pet : person.getPets()) {
+                        PetPersonCard newCard = new PetPersonCard(pet, person, getIndex() + 1);
+                        cardContainer.getChildren().add(newCard.getRoot());
+                    }
+
+                    setGraphic(cardContainer);
                 }
             }
         }
