@@ -1,8 +1,8 @@
 package seedu.address.ui;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Pet;
@@ -23,6 +23,9 @@ public class PetPersonCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
+    public final Pet pet;
+    public final Person person;
+
     @FXML
     private HBox petPersonCardPane;
 
@@ -31,9 +34,22 @@ public class PetPersonCard extends UiPart<Region> {
      */
     public PetPersonCard(Pet pet, Person person, int displayedIndex) {
         super(FXML);
+
+        this.pet = pet;
+        this.person = person;
+
         PetCard petCard = new PetCard(pet, displayedIndex);
         PersonCard personCard = new PersonCard(person, displayedIndex);
 
-        petPersonCardPane.getChildren().addAll(petCard.getRoot(), personCard.getRoot());
+        Region petNode = petCard.getRoot();
+        Region personNode = personCard.getRoot();
+
+        HBox.setHgrow(petNode, Priority.ALWAYS);
+        HBox.setHgrow(personNode, Priority.ALWAYS);
+
+        petNode.setMaxWidth(Double.MAX_VALUE);
+        personNode.setMaxWidth(Double.MAX_VALUE);
+
+        petPersonCardPane.getChildren().addAll(petNode, personNode);
     }
 }
