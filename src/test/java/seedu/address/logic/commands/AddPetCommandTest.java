@@ -126,6 +126,11 @@ public class AddPetCommandTest {
             throw new AssertionError("This method should not be called."); }
 
         @Override
+        public void removePet(Pet pet, Phone phone) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
