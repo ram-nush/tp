@@ -145,4 +145,22 @@ public class PersonTest {
         editedAlice = new PersonBuilder(editedAlice).withPets(VALID_PET_DOG).build();
         assertFalse(ALICE.hashCode() == editedAlice.hashCode());
     }
+
+    @Test
+    public void removePet_existingPet_removesPet() {
+        Person personWithPet = new PersonBuilder(ALICE).withPets(VALID_PET_DOG).build();
+        Pet petToRemove = new Pet(new Name(VALID_PET_DOG));
+        personWithPet.removePet(petToRemove);
+        Person expectedPerson = new PersonBuilder(ALICE).build(); // without pets
+        assertTrue(personWithPet.equals(expectedPerson));
+    }
+
+    @Test
+    public void removePet_nonExistingPet_noChange() {
+        Person personWithPet = new PersonBuilder(ALICE).withPets(VALID_PET_DOG).build();
+        Pet petToRemove = new Pet(new Name("NonExistingPet"));
+        personWithPet.removePet(petToRemove);
+        Person expectedPerson = new PersonBuilder(ALICE).withPets(VALID_PET_DOG).build();
+        assertTrue(personWithPet.equals(expectedPerson));
+    }
 }

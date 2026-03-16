@@ -202,6 +202,30 @@ public class UniquePersonListTest {
     }
 
     @Test
+    public void removePet_nullPet_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniquePersonList.removePet(null, ALICE.getPhone()));
+    }
+
+    @Test
+    public void removePet_nullPhone_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniquePersonList.removePet(SNOOPY, null));
+    }
+
+    @Test
+    public void removePet_personNotFound_throwsPersonNotFoundException() {
+        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.removePet(SNOOPY, ALICE.getPhone()));
+    }
+
+    @Test
+    public void removePet_existingPet_removesPet() {
+        Person personWithPet = new PersonBuilder(ALICE).withPets("Snoopy").build();
+        uniquePersonList.add(personWithPet);
+        uniquePersonList.removePet(SNOOPY, ALICE.getPhone());
+        Person expectedPerson = new PersonBuilder(ALICE).build(); // without pets
+        assertEquals(expectedPerson, uniquePersonList.searchByPhone(ALICE.getPhone()));
+    }
+
+    @Test
     public void toStringMethod() {
         assertEquals(uniquePersonList.asUnmodifiableObservableList().toString(), uniquePersonList.toString());
     }

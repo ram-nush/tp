@@ -89,6 +89,22 @@ public class AddressBookTest {
         assertEquals(expected, addressBook.toString());
     }
 
+    @Test
+    public void removePet_nullPet_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.removePet(null, ALICE.getPhone()));
+    }
+
+    @Test
+    public void removePet_nullPhone_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.removePet(new seedu.address.model.person.Pet(new seedu.address.model.person.Name("Test")), null));
+    }
+
+    @Test
+    public void removePet_personNotFound_throwsPersonNotFoundException() {
+        assertThrows(seedu.address.model.person.exceptions.PersonNotFoundException.class, () ->
+            addressBook.removePet(new seedu.address.model.person.Pet(new seedu.address.model.person.Name("Test")), ALICE.getPhone()));
+    }
+
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
