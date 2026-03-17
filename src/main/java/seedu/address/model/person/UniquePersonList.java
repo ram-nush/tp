@@ -37,6 +37,14 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Returns true if the list contains a person with the given phone.
+     */
+    public boolean containsPhone(Phone toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(p -> toCheck.equals(p.getPhone()));
+    }
+
+    /**
      * Adds a person to the list.
      * The person must not already exist in the list.
      */

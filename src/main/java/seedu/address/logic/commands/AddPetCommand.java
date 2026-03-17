@@ -11,6 +11,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Pet;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
  * Adds a person to the address book.
@@ -28,6 +29,8 @@ public class AddPetCommand extends Command {
             + PREFIX_PHONE + "98765432 ";
 
     public static final String MESSAGE_SUCCESS = "New pet added: %1$s";
+    public static final String MESSAGE_NONEXISTENT_PERSON = "The person with this phone number"
+        + " does not exist in the address book";
 
     private final Pet toAdd;
     private final Phone ownerPhone;
@@ -44,6 +47,10 @@ public class AddPetCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (!model.hasPhone(ownerPhone)) {
+            throw new CommandException(MESSAGE_NONEXISTENT_PERSON);
+        }
 
         model.addPet(toAdd, ownerPhone);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
