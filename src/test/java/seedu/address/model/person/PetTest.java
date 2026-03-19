@@ -13,7 +13,7 @@ public class PetTest {
         Pet pet = new Pet(new Name("Barkus"), "Dog", "Bulldog");
 
         // same name -> returns true
-        Pet similarPet = new Pet(new Name("Barkus"), "Dog", "Bulldog");
+        Pet similarPet = new Pet(new Name("Barkus"), "", "");
         assertTrue(pet.equals(similarPet));
 
         // same object -> returns true
@@ -26,16 +26,8 @@ public class PetTest {
         assertFalse(pet.equals(5));
 
         // different name -> returns false
-        Pet differentNamePet = new Pet(new Name("Meowy"), "Cat", "Siamese");
+        Pet differentNamePet = new Pet(new Name("Woofy"), "Dog", "Bulldog");
         assertFalse(pet.equals(differentNamePet));
-
-        // different species -> returns false
-        Pet differentSpeciesPet = new Pet(new Name("Barkus"), "Cat", "Siamese");
-        assertFalse(pet.equals(differentSpeciesPet));
-
-        // different breed -> returns false
-        Pet differentBreedPet = new Pet(new Name("Barkus"), "Dog", "Golden Retriever");
-        assertFalse(pet.equals(differentBreedPet));
     }
 
     @Test

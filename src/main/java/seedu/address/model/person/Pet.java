@@ -47,9 +47,7 @@ public class Pet {
         }
 
         Pet otherPet = (Pet) other;
-        return petName.equals(otherPet.petName)
-                && species.equals(otherPet.species)
-                && breed.equals(otherPet.breed);
+        return petName.equals(otherPet.petName);
     }
 
     @Override
