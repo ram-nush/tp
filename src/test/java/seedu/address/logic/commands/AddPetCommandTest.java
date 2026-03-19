@@ -24,6 +24,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Pet;
 import seedu.address.model.person.Phone;
+import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PetBuilder;
 
 public class AddPetCommandTest {
@@ -40,10 +41,11 @@ public class AddPetCommandTest {
 
     @Test
     public void execute_petAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPetAdded modelStub = new ModelStubAcceptingPetAdded();
+        Person validPerson = new PersonBuilder().build();
+        ModelStubAcceptingPetAdded modelStub = new ModelStubAcceptingPetAdded(validPerson);
         Pet validPet = new PetBuilder().build();
 
-        CommandResult commandResult = new AddPetCommand(validPet, new Phone("99999999")).execute(modelStub);
+        CommandResult commandResult = new AddPetCommand(validPet, validPerson.getPhone()).execute(modelStub);
 
         assertEquals(String.format(AddPetCommand.MESSAGE_SUCCESS, Messages.format(validPet)),
                 commandResult.getFeedbackToUser());
@@ -146,6 +148,11 @@ public class AddPetCommandTest {
         }
 
         @Override
+        public boolean hasPhone(Phone phone) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deletePerson(Person target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -177,6 +184,10 @@ public class AddPetCommandTest {
             this.person = person;
         }
 
+        protected Person getPerson() {
+            return this.person;
+        }
+
         @Override
         public boolean hasPerson(Person person) {
             requireNonNull(person);
@@ -185,10 +196,20 @@ public class AddPetCommandTest {
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the pet being added.
      */
-    private class ModelStubAcceptingPetAdded extends ModelStub {
+    private class ModelStubAcceptingPetAdded extends ModelStubWithPerson {
         final ArrayList<Pet> petsAdded = new ArrayList<>();
+
+        ModelStubAcceptingPetAdded(Person person) {
+            super(person);
+        }
+
+        @Override
+        public boolean hasPhone(Phone phone) {
+            requireNonNull(phone);
+            return this.getPerson().getPhone().equals(phone);
+        }
 
         @Override
         public void addPet(Pet pet, Phone phone) {

@@ -24,6 +24,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Pet;
 import seedu.address.model.person.Phone;
+import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PetBuilder;
 
 public class DeletePetCommandTest {
@@ -40,10 +41,12 @@ public class DeletePetCommandTest {
 
     @Test
     public void execute_petAcceptedByModel_deleteSuccessful() throws Exception {
-        ModelStubAcceptingPetDeleted modelStub = new ModelStubAcceptingPetDeleted();
+        Person validPerson = new PersonBuilder().build();
         Pet validPet = new PetBuilder().build();
+        validPerson = validPerson.addPet(validPet);
+        ModelStubAcceptingPetDeleted modelStub = new ModelStubAcceptingPetDeleted(validPerson);
 
-        CommandResult commandResult = new DeletePetCommand(validPet, new Phone("99999999")).execute(modelStub);
+        CommandResult commandResult = new DeletePetCommand(validPet, validPerson.getPhone()).execute(modelStub);
 
         assertEquals(String.format(DeletePetCommand.MESSAGE_SUCCESS, Messages.format(validPet)),
                 commandResult.getFeedbackToUser());
@@ -147,6 +150,11 @@ public class DeletePetCommandTest {
         }
 
         @Override
+        public boolean hasPhone(Phone phone) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deletePerson(Person target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -178,6 +186,10 @@ public class DeletePetCommandTest {
             this.person = person;
         }
 
+        protected Person getPerson() {
+            return this.person;
+        }
+
         @Override
         public boolean hasPerson(Person person) {
             requireNonNull(person);
@@ -188,8 +200,18 @@ public class DeletePetCommandTest {
     /**
      * A Model stub that always accept the pet being deleted.
      */
-    private class ModelStubAcceptingPetDeleted extends ModelStub {
+    private class ModelStubAcceptingPetDeleted extends ModelStubWithPerson {
         final ArrayList<Pet> petsDeleted = new ArrayList<>();
+
+        ModelStubAcceptingPetDeleted(Person person) {
+            super(person);
+        }
+
+        @Override
+        public boolean hasPhone(Phone phone) {
+            requireNonNull(phone);
+            return this.getPerson().getPhone().equals(phone);
+        }
 
         @Override
         public void removePet(Pet pet, Phone phone) {

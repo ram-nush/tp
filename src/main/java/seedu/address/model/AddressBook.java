@@ -72,6 +72,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if a phone with the same number as {@code phone} exists in the address book.
+     */
+    public boolean hasPhone(Phone phone) {
+        requireNonNull(phone);
+        return persons.containsPhone(phone);
+    }
+
+    /**
      * Adds a person to the address book.
      * The person must not already exist in the address book.
      */
