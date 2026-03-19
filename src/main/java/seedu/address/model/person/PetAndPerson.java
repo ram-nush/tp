@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import java.util.Objects;
+
 /**
  * Represents a Pet and Person in the address book.
  * Guarantees: immutable;
@@ -61,7 +63,7 @@ public class PetAndPerson {
 
     @Override
     public int hashCode() {
-        return 31 * pet.hashCode() + person.hashCode();
+        return Objects.hash(pet, person, petIndex, personIndex);
     }
 
     /**
