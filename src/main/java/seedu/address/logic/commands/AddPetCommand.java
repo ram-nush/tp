@@ -2,8 +2,10 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BREED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIES;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -23,9 +25,13 @@ public class AddPetCommand extends Command {
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "OWNER's PHONE "
+            + PREFIX_SPECIES + "SPECIES "
+            + PREFIX_BREED + "BREED "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Doggy "
-            + PREFIX_PHONE + "98765432 ";
+            + PREFIX_PHONE + "98765432 "
+            + PREFIX_SPECIES + "Dog "
+            + PREFIX_BREED + "Labrador";
 
     public static final String MESSAGE_SUCCESS = "New pet added: %1$s";
 

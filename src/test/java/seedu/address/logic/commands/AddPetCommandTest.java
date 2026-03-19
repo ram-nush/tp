@@ -35,7 +35,7 @@ public class AddPetCommandTest {
 
     @Test
     public void constructor_nullPhone_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddPetCommand(new Pet(new Name("Dog")), null));
+        assertThrows(NullPointerException.class, () -> new AddPetCommand(new Pet(new Name("Dog"), "", ""), null));
     }
 
     @Test
