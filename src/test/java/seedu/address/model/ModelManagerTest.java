@@ -15,12 +15,13 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.FindPredicate;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Pet;
 import seedu.address.testutil.AddressBookBuilder;
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.PetBuilder;
 
 public class ModelManagerTest {
 
@@ -94,8 +95,10 @@ public class ModelManagerTest {
 
     @Test
     public void hasPet_petInList_returnsTrue() {
-        Person validPerson = new PersonBuilder(ALICE).withPets("Barkus").build();
-        Pet validPet = new Pet(new Name("Barkus"), "", "");
+        Person validPerson = new PersonBuilder(ALICE)
+                .withPet(new PetBuilder().withName("Barkus").build())
+                .build();
+        Pet validPet = new Pet(new Name("Barkus"), "Dog", "Labrador");
         modelManager.addPerson(validPerson);
         assertTrue(modelManager.hasPet(validPerson.getPhone(), validPet));
     }
@@ -150,7 +153,7 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredPersonList(new FindPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
@@ -180,7 +183,9 @@ public class ModelManagerTest {
     public void removePet_updatesFilteredList() {
         ModelManager model = new ModelManager();
         seedu.address.model.person.Person person = new seedu.address.testutil.PersonBuilder()
-                .withPhone("99999999").withPets("Doggy").build();
+                .withPhone("99999999")
+                .withPet(new PetBuilder().withName("Doggy").build())
+                .build();
         model.addPerson(person);
         seedu.address.model.person.Pet pet = new seedu.address.model.person.Pet(
                 new seedu.address.model.person.Name("Doggy"), "", "");

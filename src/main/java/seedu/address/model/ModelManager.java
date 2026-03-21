@@ -115,19 +115,16 @@ public class ModelManager implements Model {
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
     public void addPet(Pet pet, Phone ownerPhone) {
         addressBook.addPet(pet, ownerPhone);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
     public void removePet(Pet pet, Phone ownerPhone) {
         addressBook.removePet(pet, ownerPhone);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override

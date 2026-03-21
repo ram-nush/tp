@@ -22,7 +22,8 @@ public class DeletePetCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Pet expectedPet = new PetBuilder(SNOOPY).build();
+        Pet expectedPet = new PetBuilder().withName("Snoopy")
+                .withSpecies("").withBreed("").build();
 
         // whitespace only preamble
         assertParseSuccess(parser, NAME_DESC_SNOOPY + PHONE_DESC_AMY,

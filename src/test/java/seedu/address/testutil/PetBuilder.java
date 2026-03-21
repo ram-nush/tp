@@ -42,7 +42,27 @@ public class PetBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Species} of the {@code Person} that we are building.
+     */
+    public PetBuilder withSpecies(String species) {
+        this.species = species;
+        return this;
+    }
+
+    /**
+     * Sets the {@code Breed} of the {@code Person} that we are building.
+     */
+    public PetBuilder withBreed(String breed) {
+        this.breed = breed;
+        return this;
+    }
+
+    /**
+     * Returns a {@code Pet} with the stored details.
+     * @return
+     */
     public Pet build() {
-        return new Pet(name, "", "");
+        return new Pet(name, species, breed);
     }
 }

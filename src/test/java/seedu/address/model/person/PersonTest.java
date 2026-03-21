@@ -19,8 +19,8 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.util.SampleDataUtil;
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.PetBuilder;
 
 public class PersonTest {
 
@@ -33,7 +33,9 @@ public class PersonTest {
     @Test
     public void petConstructor() {
         Person person = new PersonBuilder().build();
-        Person newPerson = new Person(person, SampleDataUtil.getPetSet(VALID_PET_DOG));
+        Person newPerson = new PersonBuilder(person)
+                .withPet(new PetBuilder().withName(VALID_PET_DOG).build())
+                .build();
 
         // same phone number -> returns true
         assertTrue(person.isSamePerson(newPerson));
@@ -114,7 +116,9 @@ public class PersonTest {
         assertFalse(ALICE.equals(editedAlice));
 
         //different pets ->returns false
-        editedAlice = new PersonBuilder(editedAlice).withPets(VALID_PET_DOG).build();
+        editedAlice = new PersonBuilder(editedAlice)
+                .withPet(new PetBuilder().withName(VALID_PET_DOG).build())
+                .build();
         assertFalse(ALICE.equals(editedAlice));
     }
 
@@ -156,14 +160,18 @@ public class PersonTest {
         assertFalse(ALICE.hashCode() == editedAlice.hashCode());
 
         //different pets ->returns false
-        editedAlice = new PersonBuilder(editedAlice).withPets(VALID_PET_DOG).build();
+        editedAlice = new PersonBuilder(editedAlice)
+                .withPet(new PetBuilder().withName(VALID_PET_DOG).build())
+                .build();
         assertFalse(ALICE.hashCode() == editedAlice.hashCode());
     }
 
     @Test
     public void removePet_existingPet_removesPet() {
-        Person personWithPet = new PersonBuilder(ALICE).withPets(VALID_PET_DOG).build();
-        Pet petToRemove = new Pet(new Name(VALID_PET_DOG), "", "");
+        Person personWithPet = new PersonBuilder(ALICE)
+                .withPet(new PetBuilder().withName(VALID_PET_DOG).build())
+                .build();
+        Pet petToRemove = new Pet(new Name(VALID_PET_DOG), "Dog", "Labrador");
         personWithPet = personWithPet.removePet(petToRemove);
         Person expectedPerson = new PersonBuilder(ALICE).build(); // without pets
         assertTrue(personWithPet.equals(expectedPerson));
@@ -171,10 +179,14 @@ public class PersonTest {
 
     @Test
     public void removePet_nonExistingPet_noChange() {
-        Person personWithPet = new PersonBuilder(ALICE).withPets(VALID_PET_DOG).build();
+        Person personWithPet = new PersonBuilder(ALICE)
+                .withPet(new PetBuilder().withName(VALID_PET_DOG).build())
+                .build();
         Pet petToRemove = new Pet(new Name("NonExistingPet"), "", "");
         personWithPet.removePet(petToRemove);
-        Person expectedPerson = new PersonBuilder(ALICE).withPets(VALID_PET_DOG).build();
+        Person expectedPerson = new PersonBuilder(ALICE)
+                .withPet(new PetBuilder().withName(VALID_PET_DOG).build())
+                .build();
         assertTrue(personWithPet.equals(expectedPerson));
     }
 }

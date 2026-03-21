@@ -70,10 +70,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code pets} into a {@code Set<Pet>} and set it to the {@code Person} that we are building.
+     * Adds pet to the {@code Person} that we are building.
      */
-    public PersonBuilder withPets(String ... pets) {
-        this.pets = SampleDataUtil.getPetSet(pets);
+    public PersonBuilder withPet(Pet p) {
+        this.pets.add(p);
         return this;
     }
 
@@ -101,8 +101,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Returns a {@code Person} with the stored details.
+     * @return
+     */
     public Person build() {
-        return new Person(new Person(name, phone, email, address, tags), pets);
+        Person person = new Person(name, phone, email, address, tags);
+        for (Pet pet : pets) {
+            person = person.addPet(pet);
+        };
+        return person;
     }
 
 }

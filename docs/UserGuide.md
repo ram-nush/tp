@@ -110,16 +110,14 @@ Examples:
 *  `editClient 1 p/91234567 e/johndoe@example.com` Edits the details of the client in `POSITION` 1.
 *  `editClient 2 n/Betsy Crower t/` Changes the name of the client in `POSITION` 2 to `Betsy Crower` and clears their tags.
 
-### Locating clients by name: `findClient`
+### Locating clients by name: `find`
 
-Finds clients whose names contain **any** of the given keywords.
+Finds pets and clients who match **all** of the given keywords.
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
+* The match is partial and case-insensitive. e.g `Roy` will match `Leroy`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
 
-Format: `findClient KEYWORD [MORE_KEYWORDS]`
+Format: `find KEYWORD...`
 
 Examples:
 * `findClient John` returns `john` and `John Doe`
@@ -207,7 +205,7 @@ Action     | Format, Examples
 **DeletePet** | `deletePet n/NAME p/PHONE_NUMBER`<br> e.g., `deletePet n/Meowy p/22224444`
 **EditClient**   | `editClient POSITION [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`editClient 2 n/James Lee e/jameslee@example.com`
 **Exit**   | `exit`
-**FindClient**   | `findClient KEYWORD [MORE_KEYWORDS]`<br> e.g., `findClient James Jake`
+**Find**   | `find KEYWORD...`<br> e.g., `find James dog`
 **Help**   | `help`
 **List**   | `list`
 

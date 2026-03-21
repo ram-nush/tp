@@ -120,9 +120,11 @@ class JsonAdaptedPerson {
 
         final Set<Pet> modelPets = new HashSet<>(personPets);
 
-        return new Person(new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags),
-                modelPets);
-
+        Person person = new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        for (Pet pet : modelPets) {
+            person = person.addPet(pet);
+        };
+        return person;
     }
 
 }

@@ -41,19 +41,6 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Person person, Set<Pet> pets) {
-        requireAllNonNull(person, pets);
-        this.name = person.getName();
-        this.phone = person.getPhone();
-        this.email = person.getEmail();
-        this.address = person.getAddress();
-        this.tags.addAll(person.getTags());
-        this.pets.addAll(pets);
-    }
-
-    /**
-     * Every field must be present and not null.
-     */
     public Person(Person person, boolean isAdd, Pet pet) {
         requireAllNonNull(person, pet);
         this.name = person.getName();

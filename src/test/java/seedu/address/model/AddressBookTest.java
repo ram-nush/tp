@@ -23,6 +23,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Pet;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.PetBuilder;
 
 public class AddressBookTest {
 
@@ -82,8 +83,10 @@ public class AddressBookTest {
 
     @Test
     public void hasPet_petInList_returnsTrue() {
-        Person validPerson = new PersonBuilder(ALICE).withPets("Barkus").build();
-        Pet validPet = new Pet(new Name("Barkus"), "", "");
+        Person validPerson = new PersonBuilder(ALICE)
+                .withPet(new PetBuilder().withName("Barkus").build())
+                .build();
+        Pet validPet = new Pet(new Name("Barkus"), "Dog", "Labrador");
         addressBook.addPerson(validPerson);
         assertTrue(addressBook.hasPet(validPerson.getPhone(), validPet));
     }
@@ -143,7 +146,9 @@ public class AddressBookTest {
     @Test
     public void removePet_removesPetFromPerson() {
         AddressBook ab = new AddressBook();
-        Person person = new seedu.address.testutil.PersonBuilder().withPhone("88888888").withPets("Catty").build();
+        Person person = new seedu.address.testutil.PersonBuilder().withPhone("88888888")
+                .withPet(new PetBuilder().withName("Catty").build())
+                .build();
         ab.addPerson(person);
         Pet pet = new seedu.address.model.person.Pet(new seedu.address.model.person.Name("Catty"), "", "");
         ab.removePet(pet, person.getPhone());
