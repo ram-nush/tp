@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_SNOOPY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PETNAME_SNOOPY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PET_NAME_SNOOPY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -38,7 +38,7 @@ public class AddPetCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPetCommand.MESSAGE_USAGE);
 
         // missing name prefix
-        assertParseFailure(parser, VALID_PETNAME_SNOOPY + PHONE_DESC_AMY, expectedMessage);
+        assertParseFailure(parser, VALID_PET_NAME_SNOOPY + PHONE_DESC_AMY, expectedMessage);
 
         // missing phone prefix
         assertParseFailure(parser, NAME_DESC_SNOOPY + VALID_PHONE_AMY,

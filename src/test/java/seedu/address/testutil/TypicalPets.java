@@ -20,8 +20,20 @@ public class TypicalPets {
     public static final Pet DOGGY = new PetBuilder()
             .withName("Doggy")
             .withSpecies("Dog")
-            .withBreed("Poodle")
+            .withBreed("Labrador")
             .withNote("Very cute")
+            .build();
+    public static final Pet BARKUS = new PetBuilder()
+            .withName("Barkus")
+            .withSpecies("Dog")
+            .withBreed("Poodle")
+            .withNote("Very energetic")
+            .build();
+    public static final Pet MEOWY = new PetBuilder()
+            .withName("Meowy")
+            .withSpecies("Cat")
+            .withBreed("Siamese")
+            .withNote("Very playful")
             .build();
 
     private TypicalPets() {} // prevents instantiation

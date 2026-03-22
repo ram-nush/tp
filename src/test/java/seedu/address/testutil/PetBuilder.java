@@ -48,21 +48,33 @@ public class PetBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Species} of the {@code Person} that we are building.
+     */
     public PetBuilder withSpecies(String species) {
         this.species = new Name(species);
         return this;
     }
 
+    /**
+     * Sets the {@code Breed} of the {@code Person} that we are building.
+     */
     public PetBuilder withBreed(String breed) {
         this.breed = new Name(breed);
         return this;
     }
 
+    /**
+     * Sets the {@code Note} of the {@code Person} that we are building.
+     */
     public PetBuilder withNote(String note) {
         this.note = new Name(note);
         return this;
     }
 
+    /**
+     * Builds the Pet object.
+     */
     public Pet build() {
         return new Pet(name, species, breed, note);
     }
