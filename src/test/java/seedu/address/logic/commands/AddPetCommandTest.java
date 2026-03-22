@@ -30,13 +30,20 @@ import seedu.address.testutil.PetBuilder;
 public class AddPetCommandTest {
 
     @Test
-    public void constructor_nullPet_throwsNullPointerException() {
+    public void constructor_nullAll_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddPetCommand(null, null));
     }
 
     @Test
+    public void constructor_nullPet_throwsNullPointerException() {
+        Phone validPhone = new Phone("87654321");
+        assertThrows(NullPointerException.class, () -> new AddPetCommand(null,validPhone));
+    }
+
+    @Test
     public void constructor_nullPhone_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddPetCommand(new Pet(new Name("Dog"), "", ""), null));
+        Pet validPet = new PetBuilder().build();
+        assertThrows(NullPointerException.class, () -> new AddPetCommand(validPet, null));
     }
 
     @Test

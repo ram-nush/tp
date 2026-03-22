@@ -6,9 +6,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PET_DOG;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PET_NAME_SNOOPY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PET_SPECIES_DOG;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PET_BREED_LABRADOR;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PET_NOTE_FRIENDLY;
+
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
@@ -33,7 +38,11 @@ public class PersonTest {
     @Test
     public void petConstructor() {
         Person person = new PersonBuilder().build();
-        Person newPerson = new Person(person, SampleDataUtil.getPetSet(VALID_PET_DOG));
+        Pet pet = new Pet(new Name(VALID_PET_NAME_SNOOPY),
+                new Name(VALID_PET_SPECIES_DOG),
+                new Name(VALID_PET_BREED_LABRADOR),
+                new Name(VALID_PET_NOTE_FRIENDLY));
+        Person newPerson = new Person(person, SampleDataUtil.getPetSet(pet));
 
         // same phone number -> returns true
         assertTrue(person.isSamePerson(newPerson));

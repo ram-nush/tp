@@ -11,8 +11,18 @@ import seedu.address.model.person.Pet;
  */
 public class TypicalPets {
 
-    public static final Pet SNOOPY = new PetBuilder().withName("Snoopy").build();
-    public static final Pet DOGGY = new PetBuilder().withName("Doggy").build();
+    public static final Pet SNOOPY = new PetBuilder()
+            .withName("Snoopy")
+            .withSpecies("Dog")
+            .withBreed("Labrador")
+            .withNote("Very friendly")
+            .build();
+    public static final Pet DOGGY = new PetBuilder()
+            .withName("Doggy")
+            .withSpecies("Dog")
+            .withBreed("Poodle")
+            .withNote("Very cute")
+            .build();
 
     private TypicalPets() {} // prevents instantiation
 
