@@ -29,6 +29,12 @@ public class PhotoPathTest {
         assertFalse(PhotoPath.isValidPhotoPath("  ")); // spaces only
         assertFalse(PhotoPath.isValidPhotoPath(" ^")); // starts with space
 
+        // non-existing file path
+        assertFalse(PhotoPath.isValidPhotoPath("/images/non_existing_image.png"));
+        
+        // valid file path but does not exist
+        assertFalse(PhotoPath.isValidPhotoPath("images/address_book_32.png"));
+
         // valid photo path
         assertTrue(PhotoPath.isValidPhotoPath("/images/placeholder-pet-logo.png"));
     }
