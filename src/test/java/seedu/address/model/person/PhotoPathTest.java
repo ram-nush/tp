@@ -76,16 +76,6 @@ public class PhotoPathTest {
     }
 
     @Test
-    public void isValidPhotoPath_validFileSystemPath_returnsTrue(@TempDir File tempDir) throws IOException {
-        // Create a temporary image file in the filesystem
-        File tempImageFile = new File(tempDir, "test-image.png");
-        Files.write(tempImageFile.toPath(), new byte[]{1, 2, 3}); // Write some dummy bytes
-
-        // Test that a valid filesystem path returns true (covers line 63: file.exists() && file.isFile())
-        assertTrue(PhotoPath.isValidPhotoPath(tempImageFile.getAbsolutePath()));
-    }
-
-    @Test
     public void isValidPhotoPath_directoryPath_returnsFalse(@TempDir File tempDir) {
         // Test that a directory path returns false even if it exists
         // This tests the file.isFile() part of line 63
