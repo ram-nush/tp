@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import seedu.address.logic.commands.EditPetCommand.EditPetDescriptor;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Pet;
+import seedu.address.model.person.PhotoPath;
 
 /**
  * A utility class to help with building EditPetDescriptor objects.
@@ -65,6 +66,15 @@ public class EditPetDescriptorBuilder {
      */
     public EditPetDescriptorBuilder withNote(String note) {
         descriptor.setNote(new Name(note));
+        return this;
+    }
+
+    /**
+     * Sets the {@code PhotoPath} of the {@code EditPetDescriptor} that we are
+     * building.
+     */
+    public EditPetDescriptorBuilder withPhotoPath(String photoPath) {
+        descriptor.setPhotoPath(new PhotoPath(photoPath));
         return this;
     }
 

@@ -202,6 +202,11 @@ public class EditPetCommandTest {
         // different descriptor -> returns false
         EditPetDescriptor differentDescriptor = new EditPetDescriptorBuilder().withName(DEFAULT_PET_NAME).build();
         assertFalse(standardCommand.equals(new EditPetCommand(INDEX_FIRST_PERSON, differentDescriptor)));
+
+        // different photopath -> returns false
+        EditPetDescriptor differentPhotoPathDescriptor = new EditPetDescriptorBuilder()
+                .withPhotoPath("/images/clock.png").build();
+        assertFalse(standardCommand.equals(new EditPetCommand(INDEX_FIRST_PERSON, differentPhotoPathDescriptor)));
     }
 
     @Test
