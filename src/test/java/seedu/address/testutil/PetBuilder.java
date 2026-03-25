@@ -1,11 +1,11 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.parser.CliSyntax.PLACEHOLDER_IMAGE_PATH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BREED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHOTO;
-import static seedu.address.logic.parser.CliSyntax.PLACEHOLDER_IMAGE_PATH;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIES;
 
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Pet;

@@ -5,8 +5,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PET_NAME_DOGGY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PET_NAME_SNOOPY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PET_NOTE_CUTE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PET_NOTE_FRIENDLY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PET_SPECIES_DOG;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PET_PHOTO_PATH;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PET_SPECIES_DOG;
 
 import java.util.ArrayList;
 import java.util.Arrays;

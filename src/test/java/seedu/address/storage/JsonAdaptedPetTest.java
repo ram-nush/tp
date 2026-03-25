@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Name;
 
-
 public class JsonAdaptedPetTest {
     private static final String INVALID_NAME = "  ";
     private static final String INVALID_SPECIES = "  ";
@@ -39,56 +38,64 @@ public class JsonAdaptedPetTest {
 
     @Test
     public void toModelType_nullPetName_throwsIllegalValueException() {
-        JsonAdaptedPet pet = new JsonAdaptedPet(null, VALID_PET_SPECIES, VALID_PET_BREED, VALID_PET_NOTE, VALID_PET_PHOTO_PATH);
+        JsonAdaptedPet pet = new JsonAdaptedPet(null, VALID_PET_SPECIES, VALID_PET_BREED, VALID_PET_NOTE,
+                VALID_PET_PHOTO_PATH);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, pet::toModelType);
     }
 
     @Test
     public void toModelType_invalidPetSpecies_throwsIllegalValueException() {
-        JsonAdaptedPet pet = new JsonAdaptedPet(VALID_PET_NAME, INVALID_SPECIES, VALID_PET_BREED, VALID_PET_NOTE, VALID_PET_PHOTO_PATH);
+        JsonAdaptedPet pet = new JsonAdaptedPet(VALID_PET_NAME, INVALID_SPECIES, VALID_PET_BREED, VALID_PET_NOTE,
+                VALID_PET_PHOTO_PATH);
         String expectedMessage = String.format(Name.MESSAGE_CONSTRAINTS);
         assertThrows(IllegalValueException.class, expectedMessage, pet::toModelType);
     }
 
     @Test
     public void toModelType_nullPetSpecies_throwsIllegalValueException() {
-        JsonAdaptedPet pet = new JsonAdaptedPet(VALID_PET_NAME, null, VALID_PET_BREED, VALID_PET_NOTE, VALID_PET_PHOTO_PATH);
+        JsonAdaptedPet pet = new JsonAdaptedPet(VALID_PET_NAME, null, VALID_PET_BREED, VALID_PET_NOTE,
+                VALID_PET_PHOTO_PATH);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "Species");
         assertThrows(IllegalValueException.class, expectedMessage, pet::toModelType);
     }
 
     @Test
     public void toModelType_invalidPetBreed_throwsIllegalValueException() {
-        JsonAdaptedPet pet = new JsonAdaptedPet(VALID_PET_NAME, VALID_PET_SPECIES, INVALID_BREED, VALID_PET_NOTE, VALID_PET_PHOTO_PATH);
+        JsonAdaptedPet pet = new JsonAdaptedPet(VALID_PET_NAME, VALID_PET_SPECIES, INVALID_BREED, VALID_PET_NOTE,
+                VALID_PET_PHOTO_PATH);
         String expectedMessage = String.format(Name.MESSAGE_CONSTRAINTS);
         assertThrows(IllegalValueException.class, expectedMessage, pet::toModelType);
     }
 
     @Test
     public void toModelType_nullPetBreed_throwsIllegalValueException() {
-        JsonAdaptedPet pet = new JsonAdaptedPet(VALID_PET_NAME, VALID_PET_SPECIES, null, VALID_PET_NOTE, VALID_PET_PHOTO_PATH);
+        JsonAdaptedPet pet = new JsonAdaptedPet(VALID_PET_NAME, VALID_PET_SPECIES, null, VALID_PET_NOTE,
+                VALID_PET_PHOTO_PATH);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "Breed");
         assertThrows(IllegalValueException.class, expectedMessage, pet::toModelType);
     }
 
     @Test
     public void toModelType_invalidPetNote_throwsIllegalValueException() {
-        JsonAdaptedPet pet = new JsonAdaptedPet(VALID_PET_NAME, VALID_PET_SPECIES, VALID_PET_BREED, INVALID_TAG, VALID_PET_PHOTO_PATH);
+        JsonAdaptedPet pet = new JsonAdaptedPet(VALID_PET_NAME, VALID_PET_SPECIES, VALID_PET_BREED, INVALID_TAG,
+                VALID_PET_PHOTO_PATH);
         String expectedMessage = String.format(Name.MESSAGE_CONSTRAINTS);
         assertThrows(IllegalValueException.class, expectedMessage, pet::toModelType);
     }
 
     @Test
     public void toModelType_nullPetNote_throwsIllegalValueException() {
-        JsonAdaptedPet pet = new JsonAdaptedPet(VALID_PET_NAME, VALID_PET_SPECIES, VALID_PET_BREED, null, VALID_PET_PHOTO_PATH);
+        JsonAdaptedPet pet = new JsonAdaptedPet(VALID_PET_NAME, VALID_PET_SPECIES, VALID_PET_BREED, null,
+                VALID_PET_PHOTO_PATH);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "Note");
         assertThrows(IllegalValueException.class, expectedMessage, pet::toModelType);
     }
 
     @Test
     public void toModelType_invalidPetPhotoPath_throwsIllegalValueException() {
-        JsonAdaptedPet pet = new JsonAdaptedPet(VALID_PET_NAME, VALID_PET_SPECIES, VALID_PET_BREED, VALID_PET_NOTE, "invalid/photo/path");
+        JsonAdaptedPet pet = new JsonAdaptedPet(VALID_PET_NAME, VALID_PET_SPECIES, VALID_PET_BREED, VALID_PET_NOTE,
+                "invalid/photo/path");
         String expectedMessage = String.format(String.format(MISSING_FIELD_MESSAGE_FORMAT, "PhotoPath"));
         assertThrows(IllegalValueException.class, expectedMessage, pet::toModelType);
     }
