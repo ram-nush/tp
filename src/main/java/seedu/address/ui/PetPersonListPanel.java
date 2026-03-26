@@ -1,19 +1,25 @@
 package seedu.address.ui;
 
+import static seedu.address.logic.parser.CliSyntax.PLACEHOLDER_IMAGE_PATH;
+
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Pet;
 import seedu.address.model.person.PetAndPerson;
+import seedu.address.model.person.PhotoPath;
 
 /**
  * Panel containing the list of persons.
@@ -21,6 +27,12 @@ import seedu.address.model.person.PetAndPerson;
 public class PetPersonListPanel extends UiPart<Region> {
     private static final String FXML = "PetPersonListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(PetPersonListPanel.class);
+
+    @FXML
+    private Label petHeaderLabel;
+
+    @FXML
+    private Label clientHeaderLabel;
 
     @FXML
     private ListView<PetAndPerson> petPersonListView;
@@ -32,6 +44,15 @@ public class PetPersonListPanel extends UiPart<Region> {
      */
     public PetPersonListPanel(ObservableList<Person> personList) {
         super(FXML);
+
+        HBox.setHgrow(petHeaderLabel, Priority.ALWAYS);
+        HBox.setHgrow(clientHeaderLabel, Priority.ALWAYS);
+
+        petHeaderLabel.setMaxWidth(Double.MAX_VALUE);
+        clientHeaderLabel.setMaxWidth(Double.MAX_VALUE);
+
+        petHeaderLabel.setText("Pet");
+        clientHeaderLabel.setText("Client");
 
         createPetPersonList(personList);
 
@@ -54,7 +75,12 @@ public class PetPersonListPanel extends UiPart<Region> {
 
         for (Person person : personList) {
             if (person.getPets().isEmpty()) {
-                Pet noPet = new Pet(new Name("No pets for this person"), "", "");
+                Pet noPet = new Pet(
+                        new Name("No pets for this person"),
+                        new Name("NIL"),
+                        new Name("NIL"),
+                        new Name("NIL"),
+                        new PhotoPath(PLACEHOLDER_IMAGE_PATH));
                 petPersonList.add(new PetAndPerson(noPet, person, 0, personCounter));
             } else {
                 for (Pet pet : person.getPets()) {
@@ -67,7 +93,8 @@ public class PetPersonListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Pet} and {@code Person} using
+     * Custom {@code ListCell} that displays the graphics of a {@code Pet} and
+     * {@code Person} using
      * a {@code PetPersonCard}.
      */
     class PetPersonListViewCell extends ListCell<PetAndPerson> {

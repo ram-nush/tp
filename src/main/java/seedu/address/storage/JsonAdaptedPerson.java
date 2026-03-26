@@ -118,11 +118,13 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        final Set<Pet> modelPets = new HashSet<>(personPets);
+        final List<Pet> modelPets = new ArrayList<>(personPets);
 
-        return new Person(new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags),
-                modelPets);
-
+        Person person = new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        for (Pet pet : modelPets) {
+            person = person.addPet(pet);
+        };
+        return person;
     }
 
 }

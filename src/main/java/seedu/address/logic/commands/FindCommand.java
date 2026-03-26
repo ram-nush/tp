@@ -5,24 +5,28 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.FindPredicate;
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
+ * Finds all pet and client combinations that match all the argument keywords.
  * Keyword matching is case-insensitive.
  */
-public class FindClientCommand extends Command {
+public class FindCommand extends Command {
 
-    public static final String COMMAND_WORD = "findClient";
+    public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all clients whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Searches for pets and clients"
+            + "that match all the specified keywords (case-insensitive).\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final FindPredicate predicate;
 
-    public FindClientCommand(NameContainsKeywordsPredicate predicate) {
+    /**
+     * Creates a FindCommand to match keywords in {@code FindPredicate}.
+     */
+    public FindCommand(FindPredicate predicate) {
+        requireNonNull(predicate);
         this.predicate = predicate;
     }
 
@@ -41,11 +45,11 @@ public class FindClientCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof FindClientCommand)) {
+        if (!(other instanceof FindCommand)) {
             return false;
         }
 
-        FindClientCommand otherFindClientCommand = (FindClientCommand) other;
+        FindCommand otherFindClientCommand = (FindCommand) other;
         return predicate.equals(otherFindClientCommand.predicate);
     }
 

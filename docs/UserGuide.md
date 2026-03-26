@@ -18,7 +18,7 @@ You can register clients and their pets, so that after grooming a pet, you can f
 
 1. [Install](https://se-education.org/guides/tutorials/javaInstallation.html) Java `17` or higher to your computer.
 
-1. Click on `tp.jar` to download it from [here](https://github.com/AY2526S2-CS2103T-F14-2/tp/releases).
+1. Download `tp.jar` from [here](https://github.com/AY2526S2-CS2103T-F14-2/tp/releases).
 
 1. Move `tp.jar` to the folder you want to use as the _home folder_ for this app.
 
@@ -110,16 +110,27 @@ Examples:
 *  `editClient 1 p/91234567 e/johndoe@example.com` Edits the details of the client in `POSITION` 1.
 *  `editClient 2 n/Betsy Crower t/` Changes the name of the client in `POSITION` 2 to `Betsy Crower` and clears their tags.
 
-### Locating clients by name: `findClient`
+### Editing a pet : `editPet`
 
-Finds clients whose names contain **any** of the given keywords.
+Edits an existing pet.
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
+* Edits the pet at the specified `POSITION`. The `POSITION` refers to the number shown next to the pet.​
+* Specified values will override old values.
+
+Format: `editPet POSITION [n/NAME] [s/SPECIES] [b/BREED]​`
+
+Examples:
+*  `editPet 1 s/cat` Edits the species of the pet in `POSITION` 1.
+*  `editPet 2 n/Gunner` Changes the name of the pet in `POSITION` 2 to `Gunner`
+
+### Locating clients by name: `find`
+
+Finds pets and clients who match **all** of the given keywords.
+
+* The match is partial and case-insensitive. e.g `Roy` will match `Leroy`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
 
-Format: `findClient KEYWORD [MORE_KEYWORDS]`
+Format: `find KEYWORD...`
 
 Examples:
 * `findClient John` returns `john` and `John Doe`
@@ -206,8 +217,9 @@ Action     | Format, Examples
 **DeleteClient** | `deleteClient POSITION`<br> e.g., `deleteClient 3`
 **DeletePet** | `deletePet n/NAME p/PHONE_NUMBER`<br> e.g., `deletePet n/Meowy p/22224444`
 **EditClient**   | `editClient POSITION [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`editClient 2 n/James Lee e/jameslee@example.com`
+**EditPet**   | `editPet POSITION [n/NAME] [s/SPECIES] [b/BREED]`<br>
+e.g.,`editPet 2 n/Pongo`
 **Exit**   | `exit`
-**FindClient**   | `findClient KEYWORD [MORE_KEYWORDS]`<br> e.g., `findClient James Jake`
+**Find**   | `find KEYWORD...`<br> e.g., `find James dog`
 **Help**   | `help`
 **List**   | `list`
-

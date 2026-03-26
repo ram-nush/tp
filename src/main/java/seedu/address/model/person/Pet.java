@@ -8,31 +8,43 @@ import static java.util.Objects.requireNonNull;
  */
 public class Pet {
     private final Name petName;
-    private final String species;
-    private final String breed;
+    private final Name species;
+    private final Name breed;
+    private final Name note;
+    private final PhotoPath photoPath;
 
     /**
      * Constructs a {@code Pet}.
      *
      * @param petName A valid pet name.
      */
-    public Pet(Name petName, String species, String breed) {
+    public Pet(Name petName, Name species, Name breed, Name note, PhotoPath photoPath) {
         requireNonNull(petName);
         this.petName = petName;
         this.species = species;
         this.breed = breed;
+        this.note = note;
+        this.photoPath = photoPath;
     }
 
     public Name getName() {
         return petName;
     }
 
-    public String getSpecies() {
+    public Name getSpecies() {
         return species;
     }
 
-    public String getBreed() {
+    public Name getBreed() {
         return breed;
+    }
+
+    public Name getNote() {
+        return note;
+    }
+
+    public PhotoPath getPhotoPath() {
+        return photoPath;
     }
 
     @Override
@@ -47,9 +59,7 @@ public class Pet {
         }
 
         Pet otherPet = (Pet) other;
-        return petName.equals(otherPet.petName)
-                && species.equals(otherPet.species)
-                && breed.equals(otherPet.breed);
+        return petName.equals(otherPet.petName);
     }
 
     @Override

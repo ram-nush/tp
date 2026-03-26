@@ -4,9 +4,8 @@
   pageNav: 3
 ---
 
-# PR:g UML diagram for storage
-
 # AB-3 Developer Guide
+# Hairy Pawter Developer Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -143,6 +142,7 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
+### PR: UML diagram for storage
 <puml src="diagrams/StorageClassDiagram.puml" width="550" />
 
 The `Storage` component,

@@ -11,7 +11,14 @@
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "tags" : [ "owesMoney", "friends" ]
+    "tags" : [ "owesMoney", "friends" ],
+    "pets" : [ {
+      "petName" : "Snoopy",
+      "species" : "Dog",
+      "breed" : "Labrador",
+      "note" : "Very friendly",
+      "photoPath" : "src/main/resources/images/placeholder-pet-logo.png"
+    } ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",

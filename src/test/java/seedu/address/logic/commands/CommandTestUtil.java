@@ -2,10 +2,14 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PLACEHOLDER_IMAGE_PATH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BREED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -17,7 +21,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.FindPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
@@ -34,9 +38,22 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_PET_DOG = "Woofer";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+
+    public static final String VALID_PET_NAME_SNOOPY = "Snoopy";
+    public static final String VALID_PET_NAME_DOGGY = "Doggy";
+    public static final String VALID_PET_SPECIES_DOG = "Dog";
+    public static final String VALID_PET_BREED_LABRADOR = "Labrador";
+    public static final String VALID_PET_NOTE_CUTE = "Very cute";
+    public static final String VALID_PET_NOTE_FRIENDLY = "Friendly";
+    public static final String VALID_PET_PHOTO_PATH = PLACEHOLDER_IMAGE_PATH;
+
+    public static final String NAME_DESC_SNOOPY = " " + PREFIX_NAME + VALID_PET_NAME_SNOOPY;
+    public static final String NAME_DESC_DOGGY = " " + PREFIX_NAME + VALID_PET_NAME_DOGGY;
+    public static final String SPECIES_DESC_DOG = " " + PREFIX_SPECIES + VALID_PET_SPECIES_DOG;
+    public static final String BREED_DESC_LABRADOR = " " + PREFIX_BREED + VALID_PET_BREED_LABRADOR;
+    public static final String NOTE_DESC_FRIENDLY = " " + PREFIX_NOTE + VALID_PET_NOTE_FRIENDLY;
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -54,17 +71,27 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    // empty string not allowed for pet names
+    public static final String INVALID_PET_SPECIES_DESC = " " + PREFIX_SPECIES;
+    public static final String INVALID_PET_BREED_DESC = " " + PREFIX_BREED;
+    public static final String INVALID_PET_NOTE_DESC = " " + PREFIX_NOTE;
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final String VALID_PETNAME_SNOOPY = "Snoopy";
-    public static final String VALID_PETNAME_DOGGY = "Doggy";
-    public static final String NAME_DESC_SNOOPY = " " + PREFIX_NAME + VALID_PETNAME_SNOOPY;
-    public static final String NAME_DESC_DOGGY = " " + PREFIX_NAME + VALID_PETNAME_DOGGY;
+    public static final String VALID_PET_NAME = "Snoopy";
+    public static final String VALID_PET_SPECIES = "dog";
+    public static final String VALID_PET_BREED = "beagle";
+    public static final String VALID_PET_NAME_DESC = " " + PREFIX_NAME + VALID_PET_NAME;
+    public static final String VALID_PET_SPECIES_DESC = " " + PREFIX_SPECIES + VALID_PET_SPECIES;
+    public static final String VALID_PET_BREED_DESC = " " + PREFIX_BREED + VALID_PET_BREED;
+    public static final String VALID_PET_NOTE_CUTE_DESC = " " + PREFIX_NOTE + VALID_PET_NOTE_CUTE;
 
-    public static final EditClientCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditClientCommand.EditPersonDescriptor DESC_BOB;
+    public static final String INVALID_PET_NAME = " ";
+    public static final String INVALID_PET_NAME_DESC = " " + PREFIX_NAME + INVALID_PET_NAME;
+
+    public static final EditPersonCommand.EditPersonDescriptor DESC_AMY;
+    public static final EditPersonCommand.EditPersonDescriptor DESC_BOB;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -131,7 +158,7 @@ public class CommandTestUtil {
 
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
         final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredPersonList(new FindPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
     }
