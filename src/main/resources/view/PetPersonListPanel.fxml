@@ -23,8 +23,6 @@
       <Label fx:id="petHeaderLabel" GridPane.columnIndex="0" styleClass="header-label" />
       <Label fx:id="clientHeaderLabel" GridPane.columnIndex="1" styleClass="header-label" />
     </GridPane>
-
-    <Region prefWidth="15" minWidth="15" />
   </HBox>
 
   <ListView fx:id="personListView" VBox.vgrow="ALWAYS" />
