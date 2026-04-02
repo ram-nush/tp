@@ -18,15 +18,16 @@ You can register clients and their pets, so that after grooming a pet, you can f
 
 1. [Install](https://se-education.org/guides/tutorials/javaInstallation.html) Java `17` or higher to your computer.
 
-1. Download `tp.jar` from [here](https://github.com/AY2526S2-CS2103T-F14-2/tp/releases).
+1. Download `hairypawter.jar` from the latest release [here](https://github.com/AY2526S2-CS2103T-F14-2/tp/releases).
 
-1. Move `tp.jar` to the folder you want to use as the _home folder_ for this app.
+1. Move `hairypawter.jar` to the folder you want to use as the _home folder_ for this app.
 
 1. Open a command terminal (Command Prompt for Windows, Terminal for Mac)
 
 1. In the command terminal, enter the command `cd PATH` where PATH is the location of _home folder_ (e.g. `cd C:\Users\jeff\Desktop\HairyPawter\`)
 
-1. In the command terminal, enter the command `java -jar tp.jar` to start the app.<br>
+1. In the command terminal, enter the command `java -jar hairypawter.jar` to start the app.<br>
+
 ![Ui](images/Ui.png)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -56,7 +57,9 @@ In the app, type a command in the command box and press Enter to execute it. (e.
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+You would use the `help` command when you don't remember the command to perform a specific action.
+
+This command shows a message explaining how to access the user guide (this document), to view the list of commands and how to use them.
 
 ![help message](images/helpMessage.png)
 
@@ -178,7 +181,7 @@ Data is saved automatically. There is no need to save manually.
 
 ### Editing the data file
 
-Data is saved automatically as a JSON file `[tp.jar file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Data is saved automatically as a JSON file `[hairypawter.jar file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <box type="warning" seamless>
 

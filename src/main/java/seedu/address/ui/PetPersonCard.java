@@ -1,10 +1,13 @@
 package seedu.address.ui;
 
+import java.util.logging.Logger;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Pet;
 
@@ -15,6 +18,7 @@ import seedu.address.model.person.Pet;
 public class PetPersonCard extends UiPart<Region> {
 
     private static final String FXML = "PetPersonCard.fxml";
+    private final Logger logger = LogsCenter.getLogger(getClass());
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -24,7 +28,7 @@ public class PetPersonCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Person person;
+    private final Person person;
 
     @FXML
     private GridPane petPersonCardPane;
@@ -43,6 +47,7 @@ public class PetPersonCard extends UiPart<Region> {
         Region personNode = personCard.getRoot();
 
         if (person.getPets().isEmpty()) {
+            logger.info("Client with index " + personIndex + " has no pets");
             Label emptyPetListLabel = new Label("The client has no pets yet");
             emptyPetListLabel.getStyleClass().add("empty_pet_list_label");
             petsContainer.getChildren().add(emptyPetListLabel);
@@ -50,6 +55,8 @@ public class PetPersonCard extends UiPart<Region> {
         } else {
             int currentPetIndex = startingPetIndex;
             for (Pet pet : person.getPets()) {
+                logger.fine("Showing pet with index " + currentPetIndex
+                        + " owned by Client with index " + personIndex);
                 PetCard petCard = new PetCard(pet, currentPetIndex);
                 petsContainer.getChildren().add(petCard.getRoot());
                 currentPetIndex++;

@@ -17,7 +17,7 @@ import seedu.address.model.person.Person;
  */
 public class PetPersonListPanel extends UiPart<Region> {
     private static final String FXML = "PetPersonListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PetPersonListPanel.class);
+    private final Logger logger = LogsCenter.getLogger(getClass());
 
     @FXML
     private Label petHeaderLabel;
@@ -65,6 +65,8 @@ public class PetPersonListPanel extends UiPart<Region> {
                     startingPetIndex += personList.get(i).getPets().size();
                 }
 
+                logger.fine("Creating PetPersonCard with personIndex: " + (getIndex() + 1)
+                        + "and petIndex: " + startingPetIndex);
                 setGraphic(new PetPersonCard(person, getIndex() + 1, startingPetIndex).getRoot());
             }
         }
