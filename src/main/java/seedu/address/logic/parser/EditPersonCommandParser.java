@@ -46,7 +46,7 @@ public class EditPersonCommandParser implements Parser<EditPersonCommand> {
         if (ParserUtil.multipleWords(argMultimap.getPreamble())) {
             //more than one word
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditPersonCommand.MESSAGE_USAGE));
+                    EditPersonCommand.MESSAGE_MANY_WORDS + System.lineSeparator() + EditPersonCommand.MESSAGE_USAGE));
         }
 
         try {

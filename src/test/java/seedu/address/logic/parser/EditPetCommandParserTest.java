@@ -38,7 +38,7 @@ public class EditPetCommandParserTest {
     private static final String MESSAGE_INVALID_INDEX = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
             ParserUtil.MESSAGE_INVALID_INDEX + System.lineSeparator() + EditPetCommand.MESSAGE_USAGE);
     private static final String MESSAGE_MANY_WORDS = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-            EditPetCommand.MESSAGE_USAGE);
+            EditPetCommand.MESSAGE_MANY_WORDS + System.lineSeparator() + EditPetCommand.MESSAGE_USAGE);
     private EditPetCommandParser parser = new EditPetCommandParser();
 
     @Test

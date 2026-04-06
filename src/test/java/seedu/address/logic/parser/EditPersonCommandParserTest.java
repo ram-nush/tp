@@ -55,7 +55,7 @@ public class EditPersonCommandParserTest {
     private static final String MESSAGE_INVALID_INDEX = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
             ParserUtil.MESSAGE_INVALID_INDEX + System.lineSeparator() + EditPersonCommand.MESSAGE_USAGE);
     private static final String MESSAGE_MANY_WORDS = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-            EditPersonCommand.MESSAGE_USAGE);
+            EditPersonCommand.MESSAGE_MANY_WORDS + System.lineSeparator() + EditPersonCommand.MESSAGE_USAGE);
     private EditPersonCommandParser parser = new EditPersonCommandParser();
 
     @Test

@@ -47,6 +47,7 @@ public class EditPetCommand extends Command {
     public static final String MESSAGE_EDIT_PET_SUCCESS = "Edited Pet: %1$s";
     public static final String MESSAGE_NO_INDEX_PASSED = "No POSITION was detected.";
     public static final String MESSAGE_INDEX_TOO_LARGE = "The POSITION provided is too large.";
+    public static final String MESSAGE_MANY_WORDS = "There are unrecognised words behind the POSITION.";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PET = "A pet with this name and owner already exists.";
 

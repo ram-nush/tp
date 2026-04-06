@@ -39,7 +39,7 @@ public class EditPetCommandParser implements Parser<EditPetCommand> {
         if (ParserUtil.multipleWords(argMultimap.getPreamble())) {
             //more than one word
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditPetCommand.MESSAGE_USAGE));
+                    EditPetCommand.MESSAGE_MANY_WORDS + System.lineSeparator() + EditPetCommand.MESSAGE_USAGE));
         }
 
         try {
