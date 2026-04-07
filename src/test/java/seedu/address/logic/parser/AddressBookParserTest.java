@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddPersonCommand;
+import seedu.address.logic.commands.AddPetCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeletePersonCommand;
 import seedu.address.logic.commands.DeletePetCommand;
@@ -112,6 +114,26 @@ public class AddressBookParserTest {
         EditPersonCommand command = (EditPersonCommand) parser.parseCommand(EditPersonCommand.ALIAS + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditPersonCommand(INDEX_FIRST_PERSON, descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_addPet() throws Exception {
+        Person person = new PersonBuilder().build();
+        Pet pet = new PetBuilder().build();
+        AddPetCommand command = (AddPetCommand) parser.parseCommand(
+                AddPetCommand.COMMAND_WORD + " " + PREFIX_PHONE + " " + person.getPhone().value
+                        + " " + new PetBuilder().getCommandFormat());
+        assertEquals(new AddPetCommand(pet, person.getPhone()), command);
+    }
+
+    @Test
+    public void parseCommand_addPet_alias() throws Exception {
+        Person person = new PersonBuilder().build();
+        Pet pet = new PetBuilder().build();
+        AddPetCommand command = (AddPetCommand) parser.parseCommand(
+                AddPetCommand.ALIAS + " " + PREFIX_PHONE + " " + person.getPhone().value
+                        + " " + new PetBuilder().getCommandFormat());
+        assertEquals(new AddPetCommand(pet, person.getPhone()), command);
     }
 
     @Test

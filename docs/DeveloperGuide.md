@@ -571,3 +571,18 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+
+## **Appendix: Effort**
+
+Our project extended AB3 by including pets as an additional attribute for person.
+We made big changes to the UI to make it more appealing.
+Extending the existing commands to include a new entity should have saved a significant amount of effort, but adapting the tests turned out to be very tedious.
+An unexpected challenge was addressing pets with indexes, since we only had a ObservablePersonList to work with.
+
+## **Appendix: Planned Enhancements**
+
+Team size: 5
+
+1. **Make find function more specific:** The current find function returns pets that are not related to the search.
+The find function can be made more specific by saving an additional predicate in the model that takes in a pet and a person.
+The UI and commands that use indexes will have to traverse the observableList using the predicate.
