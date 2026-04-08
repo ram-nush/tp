@@ -17,7 +17,7 @@
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
     </columnConstraints>
 
-    <ImageView fx:id="petImage" fitHeight="100" fitWidth="100" preserveRatio="true" smooth="true" styleClass="pet-image" GridPane.columnIndex="0">
+    <ImageView fx:id="petImage" fitWidth="100" fitHeight="100" preserveRatio="true" styleClass="pet-image" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
       <GridPane.margin>
         <Insets top="5" right="10" bottom="5" left="5" />
       </GridPane.margin>
