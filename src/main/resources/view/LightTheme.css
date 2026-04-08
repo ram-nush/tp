@@ -93,7 +93,12 @@
 }
 
 .list-with-header {
-    -fx-background-color: #fefae0;
+    -fx-background-color: derive(#faedcd, 30%);
+}
+
+.list-header {
+    -fx-border-color: #d4a373;
+    -fx-border-width: 0.5;
 }
 
 .list-cell {

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <VBox fx:id="mainContainer" styleClass="list-with-header" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
-  <HBox maxWidth="Infinity">
+  <HBox maxWidth="Infinity" styleClass="list-header">
 
     <GridPane HBox.hgrow="ALWAYS">
       <padding>
