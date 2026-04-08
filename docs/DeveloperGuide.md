@@ -15,7 +15,7 @@
 
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
-* Images used: [Footprint Icon](https://www.stfrancisanimalwelfare.co.uk/home/placeholder-logo-1/) (created by Daniel ceha)
+* Images used: [Footprint Icon](https://www.stfrancisanimalwelfare.co.uk/home/placeholder-logo-1/)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -103,6 +103,7 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 <box type="info" seamless>
 
 **Note:** The lifeline for `DeletePersonCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
+
 </box>
 
 How the `Logic` component works:
@@ -129,10 +130,26 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the address book data i.e., all `Person` (client) objects (which are contained in a `UniquePersonList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+* stores a `UserPref` object that represents the user's preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+
+#### Person-Pet Relationship
+
+Each `Person` (client) contains a `List<Pet>` representing their owned pets. This is a **one-to-many** relationship: one client can own multiple pets.
+
+**Key characteristics of the Person-Pet model:**
+
+* **Immutability**: `Person` objects are immutable. Operations like `addPet(Pet)` and `removePet(Pet)` return new `Person` instances rather than modifying the existing object. This design ensures thread safety and simplifies state management.
+
+* **Client identity**: A client's uniqueness is determined by their **phone number**. Two clients with the same phone number are considered the same person, regardless of other fields. This is implemented in `Person#isSamePerson()`.
+
+* **Pet identity**: A pet's uniqueness within an owner is determined by the **pet name**. Two pets belonging to the same owner cannot have the same name. This is validated when adding or editing pets.
+
+* **Pet indexing**: Pets are indexed **globally** across all clients in the displayed list. For example, if Client 1 has pets A and B, and Client 2 has pet C, their indexes would be 1, 2, and 3 respectively. This sequential indexing is used by `editPet` and `deletePet` commands.
+
+* **Pet-Client linking**: When adding a pet via `addPet`, the pet is linked to a client using the client's **phone number** (not the client's index). This ensures the link remains stable even when the client list is filtered or reordered.
 
 ### Storage component
 
@@ -603,7 +620,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a client using their index
 
-   1. Prerequisites: List all clients using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all clients using the `list` command. Multiple clients in the list.
 
    1. Test case: `deleteClient 1`<br>
       Expected: Client with index 1 is deleted from the list. Details of the deleted client shown in the status message.
