@@ -34,24 +34,24 @@ public class BreedTest {
         assertTrue(Breed.isValidBreed("Lagotto Romagnolo")); // long name
     }
 
-     @Test
-     public void equals() {
-         Breed breed = new Breed("Valid Breed");
+    @Test
+    public void equals() {
+        Breed breed = new Breed("Valid Breed");
 
-         // same values -> returns true
-         assertTrue(breed.equals(new Breed("Valid Breed")));
+        // same values -> returns true
+        assertTrue(breed.equals(new Breed("Valid Breed")));
 
-         // same object -> returns true
-         assertTrue(breed.equals(breed));
+        // same object -> returns true
+        assertTrue(breed.equals(breed));
 
-         // null -> returns false
-         assertFalse(breed.equals(null));
+        // null -> returns false
+        assertFalse(breed.equals(null));
 
-         // different types -> returns false
-         assertFalse(breed.equals(5.0f));
+        // different types -> returns false
+        assertFalse(breed.equals(5.0f));
 
-         // different values -> returns false
-         assertFalse(breed.equals(new Breed("Other Valid Breed")));
-     }
+        // different values -> returns false
+        assertFalse(breed.equals(new Breed("Other Valid Breed")));
+    }
 
 }
