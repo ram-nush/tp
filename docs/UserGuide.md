@@ -19,9 +19,9 @@ so that after grooming a pet, you can quickly find the details of the owner and 
 
 ## Installation
 
-1. [Install](https://se-education.org/guides/tutorials/javaInstallation.html) Java `17` or higher to your computer.
+1. [Install](https://se-education.org/guides/tutorials/javaInstallation.html) `Java 17` or higher to your computer.
 
-   * Java `17` is the programming language that Hairy Pawter runs on.
+   * `Java 17` is the programming language that Hairy Pawter runs on.
 <br><br>
 
 1. Download `hairypawter.jar` from the latest release [here](https://github.com/AY2526S2-CS2103T-F14-2/tp/releases).
@@ -256,6 +256,7 @@ Format: `exit`
 --------------------------------------------------------------------------------------------------------------------
 
 ## Storing data
+
 
 Data is saved automatically. There is no need to save manually.
 
