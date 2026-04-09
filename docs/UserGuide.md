@@ -19,16 +19,22 @@ so that after grooming a pet, you can quickly find the details of the owner and 
 
 ## Installation
 
-1. [Install](https://se-education.org/guides/tutorials/javaInstallation.html) `Java 17` or higher to your computer.
-    * `Java 17` is the programming language that Hairy Pawter runs on.
+1. [Install](https://se-education.org/guides/tutorials/javaInstallation.html) Java `17` or higher to your computer.
 
-2. Download `hairypawter.jar` from the latest release [here](https://github.com/AY2526S2-CS2103T-F14-2/tp/releases).
-    * You should be able to see it inside your Downloads folder.
+   * Java `17` is the programming language that Hairy Pawter runs on.
+<br><br>
 
-3. Move `hairypawter.jar` to the folder you want to use as the _home folder_ for this app.
-    * You can create a folder called Hairypawter and drag `hairypawter.jar` inside it.
+1. Download `hairypawter.jar` from the latest release [here](https://github.com/AY2526S2-CS2103T-F14-2/tp/releases).
 
-4. Double-click on `hairypawter.jar` to run it.
+   * You should be able to see it inside your Downloads folder.
+<br><br>
+
+1. Move `hairypawter.jar` to the folder you want to use as the _home folder_ for this app.
+
+   * You can create a folder called Hairypawter and drag `hairypawter.jar` inside it.
+<br><br>
+
+1. Double-click on `hairypawter.jar` to run it
 
 <box type="info" seamless>
 
@@ -67,8 +73,8 @@ In the app, type a command in the command box (at the bottom) and press Enter to
 * Items in square brackets are optional.<br>
   e.g `[t/TAG]` can be ignored.
 
-* Items with `…`​ can be used multiple times.<br>
-  e.g. `[t/TAG]…​` can be used as `t/regular t/text, don't call`.
+* Items with `…` can be used multiple times.<br>
+  e.g. `[t/TAG]…` can be used as `t/friend t/family`
 
 * Items can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -97,7 +103,7 @@ Registers a new client. The new client will be shown on the list.
 **Important:** Clients cannot have the same phone number.
 </box>
 
-Format: `addClient p/PHONE_NUMBER [n/NAME] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `addClient p/PHONE_NUMBER [n/NAME] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
 Examples:
 * `addClient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
@@ -118,7 +124,9 @@ Examples:
 
 Registers a new pet of a client. The name of the pet and the **phone number of the client** are needed.
 
-Format: `addPet n/NAME p/PHONE_NUMBER​ [s/SPECIES] [b/BREED] [nt/NOTES] [ph/PHOTO]`
+Note: Pets can only be added after their owner has been added.
+
+Format: `addPet n/NAME p/PHONE_NUMBER [s/SPECIES] [b/BREED] [nt/NOTES] [ph/PHOTO]`
 
 Examples:
 * `addPet n/Snowy p/0000 s/Dog b/Wire Fox Terrier (White)`
@@ -145,7 +153,7 @@ Format: `list`
 
 Edits an existing client.
 
-* Edits the client at the specified `POSITION`. The `POSITION` refers to the number shown next to the client.​
+* Edits the client at the specified `POSITION`. The `POSITION` refers to the number shown next to the client.
 * Specified values will override old values.
 * Editing tags will clear previous tags.
 * You can remove a client’s tags by typing `t/` without
@@ -199,7 +207,9 @@ Examples:
 Deletes the specified client.
 
 * Deletes the client at the specified `POSITION`.
-* The `POSITION` refers to the `POSITION` number shown in the displayed client list.​
+* The `POSITION` refers to the `POSITION` number shown in the displayed client list.
+
+Note: All the pets of the specified client will be deleted too.
 
 Format: `deleteClient POSITION`
 
@@ -214,11 +224,17 @@ Examples:
 Deletes a pet.
 
 * Deletes the pet at the specified `POSITION`.
-* The `POSITION` refers to the `POSITION` number shown next to the pet.​
+* The `POSITION` refers to the `POSITION` number shown next to the pet.
+
 Format: `deletePet POSITION`
 
 Examples:
 * `deletePet 1`
+
+<box type="info" seamless>
+
+**Note:** Unlike adding pets (which uses owner's phone number), deleting pets uses the global pet position number shown in the list, not the pet's name or owner's phone number.
+</box>
 
 <br><br>
 
@@ -237,8 +253,9 @@ Exits the app.
 Format: `exit`
 
 <br><br>
+--------------------------------------------------------------------------------------------------------------------
 
-### Saving the data
+## Storing data
 
 Data is saved automatically. There is no need to save manually.
 
@@ -305,10 +322,14 @@ Action     | Format, Examples
 
 
 ## Short-form commands
-For advanced users, Hair Pawter supports short-forms for some commands.
-* `AddClient` can be shortened to `ac`
-* `AddPet` can be shortened to `ap`
-* `EditClient` can be shortened to `ec`
-* `EditPet` can be shortened to `ep`
-* `DeleteClient` can be shortened to `dc`
-* `DeletePet` can be shortened to `dp`
+
+For advanced users, Hairy Pawter supports short-forms for some commands.
+
+| Action         | Short-form |
+|----------------|------------|
+| `AddClient`    | `ac`       |
+| `AddPet`       | `ap`       |
+| `DeleteClient` | `dc`       |
+| `DeletePet`    | `dp`       |
+| `EditClient`   | `ec`       |
+| `EditPet`      | `ep`       |
