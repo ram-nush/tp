@@ -6,12 +6,30 @@ skinparam classBackgroundColor LOGIC_COLOR
 
 package Logic as LogicPackage {
 
-package "Parser Classes" as ParserClasses{
+package ParserClasses {
+Class AddPersonCommandParser
+Class AddPetCommandParser
+Class DeletePersonCommandParser
+Class DeletePetCommandParser
+Class EditPersonCommandParser
+Class EditPetCommandParser
+Class FindCommandParser
+Class AddressBookParser
 }
-Class XYZCommand
+
+Class AddPersonCommand
+Class AddPetCommand
+Class DeletePersonCommand
+Class DeletePetCommand
+Class EditPersonCommand
+Class EditPetCommand
+Class FindCommand
+Class ListCommand
+Class HelpCommand
+Class ExitCommand
+Class ClearCommand
 Class CommandResult
 Class "{abstract}\nCommand" as Command
-
 
 Class "<<interface>>\nLogic" as Logic
 Class LogicManager
@@ -29,9 +47,26 @@ HiddenOutside ..> Logic
 
 LogicManager .right.|> Logic
 LogicManager -right->"1" ParserClasses
-ParserClasses ..> XYZCommand : <<create>>
+ParserClasses ..> AddPersonCommand : <<create>>
+ParserClasses ..> AddPetCommand : <<create>>
+ParserClasses ..> DeletePersonCommand : <<create>>
+ParserClasses ..> DeletePetCommand : <<create>>
+ParserClasses ..> EditPersonCommand : <<create>>
+ParserClasses ..> EditPetCommand : <<create>>
+ParserClasses ..> FindCommand : <<create>>
 
-XYZCommand -up-|> Command
+AddPersonCommand -up-|> Command
+AddPetCommand -up-|> Command
+DeletePersonCommand -up-|> Command
+DeletePetCommand -up-|> Command
+EditPersonCommand -up-|> Command
+EditPetCommand -up-|> Command
+FindCommand -up-|> Command
+ListCommand -up-|> Command
+HelpCommand -up-|> Command
+ExitCommand -up-|> Command
+ClearCommand -up-|> Command
+
 LogicManager .left.> Command : <<call>>
 
 LogicManager --> Model
@@ -39,7 +74,7 @@ LogicManager --> Storage
 Storage --[hidden] Model
 Command .[hidden]up.> Storage
 Command .right.> Model
-note right of XYZCommand: XYZCommand = AddPersonCommand, \nFindCommand, etc
+note right of AddPetCommand: Pet-related commands are\ncustom features added\nto the address book
 
 Logic ..> CommandResult
 LogicManager .down.> CommandResult

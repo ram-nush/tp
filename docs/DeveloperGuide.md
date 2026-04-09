@@ -93,9 +93,16 @@ The `UI` component,
 
 **API** : [`Logic.java`](https://github.com/AY2526S2-CS2103T-F14-2/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
-Here's a (partial) class diagram of the `Logic` component:
+Here's a class diagram of the `Logic` component:
 
 <puml src="diagrams/LogicClassDiagram.puml" width="550"/>
+
+The diagram shows all the implemented commands in the system:
+* **Client/Person Commands**: `AddPersonCommand`, `DeletePersonCommand`, `EditPersonCommand` - for managing clients
+* **Pet Commands**: `AddPetCommand`, `DeletePetCommand`, `EditPetCommand` - for managing pets (custom feature)
+* **Utility Commands**: `FindCommand`, `ListCommand`, `HelpCommand`, `ExitCommand`, `ClearCommand`
+
+Each command has a corresponding parser class that handles parsing user input (e.g., `AddPersonCommandParser`, `AddPetCommandParser`, etc.).
 
 The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("deleteClient 1")` API call as an example.
 
@@ -109,19 +116,23 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 
 How the `Logic` component works:
 
-1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeletePersonCommandParser`) and uses it to parse the command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeletePersonCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to delete a person).<br>
+1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeletePersonCommandParser` for deleting a client or `DeletePetCommandParser` for deleting a pet) and uses it to parse the command.
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeletePersonCommand`, `AddPetCommand`, etc.) which is executed by the `LogicManager`.
+1. The command can communicate with the `Model` when it is executed (e.g. to delete a person, add a pet, etc.).<br>
    Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve.
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
+**Supported Commands:**
 
-<puml src="diagrams/ParserClasses.puml" width="600"/>
+* **Client Management**: `addclient` (ac), `deleteclient`, `editclient` (ec), `find`, `list`
+* **Pet Management**: `addpet` (ap), `deletepet` (dp), `editpet` (ep)
+* **System**: `help`, `exit`, `clear`
+
+The pet-related commands (`addpet`, `deletepet`, `editpet`) are custom features added to link pets with their owners using the owner's phone number.
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddPersonCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddPersonCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddPersonCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `AddressBookParser` class creates a matching parser (e.g., `AddPersonCommandParser`, `AddPetCommandParser`, `DeletePetCommandParser`, etc.) which uses the `ArgumentTokenizer` and `ParserUtil` to parse the user command and create the corresponding `Command` object.
+* All parser classes inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2526S2-CS2103T-F14-2/tp/tree/master/src/main/java/seedu/address/model/Model.java)
