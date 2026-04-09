@@ -81,8 +81,7 @@ public class PhotoPathTest {
 
     @Test
     public void isValidPhotoPath_invalidPathCharacters_returnsFalse() {
-        // A path with NUL character has a valid extension but triggers InvalidPathException
-        // from Paths.get(), covering the catch (InvalidPathException) branch
+        // Test to trigger InvalidPathException
         assertFalse(PhotoPath.isValidPhotoPath("invalid\0path.png"));
     }
 }
