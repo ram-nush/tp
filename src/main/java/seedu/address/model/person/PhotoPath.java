@@ -16,8 +16,9 @@ import java.nio.file.Paths;
  */
 public class PhotoPath {
 
-    public static final String MESSAGE_CONSTRAINTS = "Photo path must be a valid file path to an "
-        + "existing image file and cannot be empty.";
+    public static final String MESSAGE_CONSTRAINTS = "Photo path must be a valid file path "
+            + "to an existing image file and cannot be empty. "
+            + "Accepted file extensions: .jpg, .jpeg, .png, .gif, .bmp";
 
     public final String value;
 
@@ -38,6 +39,13 @@ public class PhotoPath {
      */
     public static boolean isValidPhotoPath(String test) {
         if (test == null || test.isBlank()) {
+            return false;
+        }
+
+        // Only accept the following file extensions: .jpg, .jpeg, .png, .gif, .bmp, .jfif
+        String extension = test.substring(test.lastIndexOf(".")).toLowerCase();
+        if (!extension.equals(".jpg") && !extension.equals(".jpeg") && !extension.equals(".png")
+                && !extension.equals(".gif") && !extension.equals(".bmp") && !extension.equals(".jfif")) {
             return false;
         }
 
