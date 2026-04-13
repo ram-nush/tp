@@ -154,6 +154,10 @@ Optional values will appear as `Unknown` or `None`.
 * Copy a photo you wish to add into that subdirectory, and take note of its filename
 * Include this filename after the `pic/` tag when adding a photo using the `addPet` or `editPet` command (eg. `pic/doggy.png`)
 * You may choose to organise the images within your `data/photos/` subdirectory into subfolders. In that case, take note that the filepath you are required to provide will be `[subdirectory name]/[image filename]`. Be careful not to end the subdirectory name with any other tag name (eg. the filepath `subfolder nt/pet.png` is not allowed)
+* A picture will show as the placeholder pawprint icon in 2 cases:
+  1. No picture has been added to the pet.
+  1. A valid picture was initially added, but was later unable to be located (either due to the picture being deleted or due to the filepath being manually edited to an invalid filepath in the JSON file after the initial adding)
+  * If this happens, try to re-add the photo with the `editPet` command with the corrected filename and filepath
 
 #### **Using `[nt/NOTES]` to your advantage:**<br>
 
@@ -306,6 +310,7 @@ It is possible, but not recommended, to update data directly by editing that dat
 **Caution:**
 If your changes to the data file makes its format invalid, the entire file will be discarded the next time the app is opened.  Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the app to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+
 </box>
 
 <br><br>
