@@ -681,12 +681,15 @@ testers are expected to do more *exploratory* testing.
    * Other correct commands to try: case-insensitive `editclient`, alias `ec`, reordered fields, missing fields<br>
          Expected: Similar to previous.
 
-2. Test case: `editClient 1 p/123`, where there already is a client with phone number 123 that is not in index 1<br>
-      Expected: No change in the list. Error details shown in the status message.
+2. Test case: `editClient 1 p/123`, where client at index 1 already has phone 123<br>
+      Expected: Success message shown in the status message, but no change in the list. Details of the client shown in the status message.
 
-   * Other incorrect commands to try: `editClient`, repeat parameters<br>
+3. Test case: `editClient 2 p/123`, where there already is a client with phone number 123 that is not in index 1<br>
+   Expected: No change in the list. Error details shown in the status message.
+
+    * Other incorrect commands to try: `editClient`, repeat parameters<br>
       Expected: Similar to previous.
-
+   
 ### Deleting a client
 Prerequisites: List all clients using the `list` command. Multiple clients in the list.
 
