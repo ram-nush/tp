@@ -909,3 +909,5 @@ Team size: 5
 8. **Show pet count in status bar:** The current status bar shows only the data file path. Adding a live count such as `5 clients · 12 pets` would give users at-a-glance information about the size of their database without needing to scroll. This requires a listener on the `ObservableList<Person>` in `StatusBarFooter` and a utility to sum pet counts across all persons.
 
 9. **Prevent accidental `clear` with a confirmation step:** The `clear` command permanently deletes all clients and pets with no warning. The fix is to require users to confirm by typing `clear --confirm`, or to display a confirmation prompt in the result display that must be acknowledged before the deletion proceeds.
+
+10. **Improve storage of clients:** The current storage stores some optional fields and not others. One possible fix is to standardise the storage to not store optional fields and insert default values upon retrieval.
