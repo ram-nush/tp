@@ -169,6 +169,11 @@ public class AddPersonCommandTest {
         }
 
         @Override
+        public int getTotalPets() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasPhone(Phone phone) {
             throw new AssertionError("This method should not be called.");
         }

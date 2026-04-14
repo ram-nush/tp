@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHOTO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIES;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditPersonCommand;
 import seedu.address.logic.commands.EditPetCommand;
 import seedu.address.logic.commands.EditPetCommand.EditPetDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;

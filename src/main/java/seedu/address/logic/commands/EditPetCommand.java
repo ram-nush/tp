@@ -17,7 +17,6 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Breed;
 import seedu.address.model.person.Name;
@@ -95,7 +94,7 @@ public class EditPetCommand extends Command {
 
         if (!editPetDescriptor.isAnyFieldEdited()) {
             throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditPersonCommand.MESSAGE_NOT_EDITED + System.lineSeparator() + EditPersonCommand.MESSAGE_USAGE));
+                    EditPetCommand.MESSAGE_NOT_EDITED + System.lineSeparator() + EditPetCommand.MESSAGE_USAGE));
         }
 
         Pet editedPet = createEditedPet(petToEdit, editPetDescriptor);
