@@ -153,7 +153,9 @@ If you have more details to add, you can save them as `[t/TAG]`s. You can also u
 
 <box type="warning" seamless>
 
-**Constraint:** Each client must have a unique phone number. You cannot add two clients with the same phone number.
+**Constraints:** 
+* Each client must have a unique phone number. You cannot add two clients with the same phone number.
+* There are no constraints placed on the phone field, so that you can add the client's preferred contact should they not have a phone number.
 
 </box>
 
@@ -204,11 +206,17 @@ New pet added: Snowy; Species: Dog; Breed: Wire Fox Terrier (White); Notes: None
 
 ##### **How to use `[pic/PICTURE]`:**<br>
 
-* Locate this folder `[_Hair Pawter home folder_]/data/photos/`. (if it has not been generated yet, run any command that adds or deletes an entry first)
+* Locate this folder `[_hairypawter.jar home folder_]/data/photos/`. (if it has not been generated yet, run any command that adds or deletes an entry first)
 * Copy a photo you wish to add into that folder, and take note of its filename.
 * To add this photo, include its filename after `pic/`. (eg. `pic/doggy.png`)
 * You may choose to organise the images within your `data/photos/` folder into subfolders. In this case, take note that you have to include the subfolder name in your input. (eg. `pic/[subfolder name]/[image filename]`). Be careful not to end the subfolder name with a command item. (eg. `pic/subfolder nt/pet.png` is not allowed)
 * If the photo does not appear, try using the `editPet` command to update the filename and filepath.
+
+Example on Windows OS: Navigate to the `/data/photos/` subdirectory as follows
+<img src="images/photopath-1.png" class="app-screenshot" alt="photopath tutorial 1">
+<img src="images/photopath-2.png" class="app-screenshot" alt="photopath tutorial 2">
+
+Navigating to the `/data/photos/` subdirectory can be done in a similar fashion for other OSes.
 
 ##### **Using `[nt/NOTES]` to your advantage:**<br>
 
@@ -242,7 +250,9 @@ Edited Client: Betsy Crower; Phone: 1234567; Email: betsycrowe@example.com; Addr
 
 <box type="info" seamless>
 
-**Note:** Changing a client’s phone number does not affect their pets — the pets remain associated with that client under the new phone number.
+**Notes:** 
+* Changing a client’s phone number does not affect their pets — the pets remain associated with that client under the new phone number.
+* Attempting to modify a client's details to the exact details they had before will return a success as long as the input values are valid.
 
 </box>
 
@@ -254,7 +264,7 @@ Use this command to edit the details of an existing pet.
 
 * Edits the pet at the specified `POSITION`.
 * Only the fields you provide will be updated; all other fields remain unchanged.
-* To remove a pet's photo, use `pic/` with no value.
+* To remove the value for any optional fields (Species, Breed, Note, Picture), simply include the corresponding tag with no value.
 * A pet's owner cannot be changed with `editPet`. To reassign a pet to a different owner, delete the pet with [`deletePet`](#deleting-a-pet-deletepet) and re-add it with [`addPet`](#adding-a-pet-addpet).
 
 Format: `editPet POSITION [n/NAME] [s/SPECIES] [b/BREED]​ [nt/NOTES] [pic/PICTURE]`
@@ -267,8 +277,14 @@ Examples:
 
 **Expected output:**
 ```
-Edited Pet: Gunner; Species: Unknown; Breed: Unknown; Notes: Nervous around strangers; Picture: No picture provided
+Edited Pet: Gunner; Notes: Nervous around strangers; Picture: No picture provided
 ```
+
+<box type="info" seamless>
+
+**Note:** Attempting to modify a pet's details to the exact details they had before will return a success as long as the input values are valid.
+
+</box>
 
 <br><br>
 
@@ -295,7 +311,9 @@ Examples:
 
 <box type="info" seamless>
 
-**Note:** The result count shows the number of **clients** matched, not pets.
+**Notes:** 
+* The result count shows the number of **clients** matched, not pets.
+* The find command will show **all** the pets of each matched client.
 
 </box>
 
@@ -408,7 +426,7 @@ Data is stored as a JSON file at `[_hairypawter.jar home folder_]/data/addressbo
 
 Certain edits may also cause the app to behave unexpectedly (e.g. if a value is outside the accepted range). Only edit the data file if you are confident you can update it correctly.
 
-Optional fields should still be included in the JSON with empty values to avoid unexpected behaviour.
+Optional fields should still be included in the JSON with their corresponding default values (`-` for client and blank string for pet) to avoid unexpected behaviour.
 
 </box>
 
@@ -443,6 +461,8 @@ Optional fields should still be included in the JSON with empty values to avoid 
 
 1. **When using multiple screens**, if you move the app to a secondary screen and later return to using only the primary screen, the window may open off-screen. Fix: delete the `preferences.json` file in your home folder before restarting the app.
 2. **If you minimise the Help Window** and then run the `help` command again (or press `F1`), the existing minimised window will not reappear and no new window will open. Fix: manually restore the minimised Help Window from your taskbar.
+3. **If you utilise any invalid non-standard unicode characters**, such as the `U+200B` zero-width space, the input will be accepted and displayed as a blank character. Fix: utilise a standard-width space character for behaviour to fall within expected boundaries.
+4. **Using a photo that is too large** may cause it to fail to be displayed. Fix: utilise an image of smaller resolution instead.
 
 --------------------------------------------------------------------------------------------------------------------
 
