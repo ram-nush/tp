@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_EMPTY_LIST;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -54,6 +55,7 @@ public class EditPersonCommand extends Command {
     public static final String MESSAGE_INDEX_TOO_LARGE = "The POSITION provided is too large. "
         + "Choose a number between 1 and %s.";
     public static final String MESSAGE_MANY_WORDS = "There are unrecognised words behind the POSITION.";
+    public static final String MESSAGE_ADD_CLIENT_FIRST = "Add a client to the list first.";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "A client with this phone number already exists.";
 
@@ -80,6 +82,10 @@ public class EditPersonCommand extends Command {
             personToEdit = model.getPerson(index);
         } catch (IndexOutOfBoundsException e) {
             int noOfClientsShown = model.getFilteredPersonList().size();
+            if (noOfClientsShown == 0) {
+                throw new CommandException(MESSAGE_EMPTY_LIST + " " + MESSAGE_ADD_CLIENT_FIRST
+                        + System.lineSeparator() + MESSAGE_USAGE);
+            }
             String indexMessage = String.format(MESSAGE_INDEX_TOO_LARGE, noOfClientsShown);
             throw new CommandException(indexMessage + System.lineSeparator() + MESSAGE_USAGE);
         }
