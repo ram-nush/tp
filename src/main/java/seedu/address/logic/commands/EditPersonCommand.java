@@ -79,8 +79,8 @@ public class EditPersonCommand extends Command {
         try {
             personToEdit = model.getPerson(index);
         } catch (IndexOutOfBoundsException e) {
-            int noOfClients = model.getAddressBook().getPersonList().size();
-            String indexMessage = String.format(MESSAGE_INDEX_TOO_LARGE, noOfClients);
+            int noOfClientsShown = model.getFilteredPersonList().size();
+            String indexMessage = String.format(MESSAGE_INDEX_TOO_LARGE, noOfClientsShown);
             throw new CommandException(indexMessage + System.lineSeparator() + MESSAGE_USAGE);
         }
 
