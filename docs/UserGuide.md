@@ -153,7 +153,7 @@ If you have more details to add, you can save them as `[t/TAG]`s. You can also u
 
 <box type="warning" seamless>
 
-**Constraints:** 
+**Constraints:**
 * Each client must have a unique phone number. You cannot add two clients with the same phone number.
 * There are no constraints placed on the phone field, so that you can add the client's preferred contact should they not have a phone number.
 
@@ -250,7 +250,7 @@ Edited Client: Betsy Crower; Phone: 1234567; Email: betsycrowe@example.com; Addr
 
 <box type="info" seamless>
 
-**Notes:** 
+**Notes:**
 * Changing a client’s phone number does not affect their pets — the pets remain associated with that client under the new phone number.
 * Attempting to modify a client's details to the exact details they had before will return a success as long as the input values are valid.
 
@@ -311,7 +311,7 @@ Examples:
 
 <box type="info" seamless>
 
-**Notes:** 
+**Notes:**
 * The result count shows the number of **clients** matched, not pets.
 * The find command will show **all** the pets of each matched client.
 

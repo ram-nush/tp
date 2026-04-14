@@ -708,7 +708,7 @@ testers are expected to do more *exploratory* testing.
 
     * Other incorrect commands to try: `editClient`, repeat parameters<br>
       Expected: Similar to previous.
-   
+
 ### Deleting a client
 Prerequisites: List all clients using the `list` command. Multiple clients in the list.
 
