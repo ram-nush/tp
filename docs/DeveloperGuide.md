@@ -898,11 +898,9 @@ Team size: 5
 
 3. **Support prefix-based `find` for specific fields:** Currently `find dog` matches "dog" anywhere — names, notes, species, etc. — which can return unexpected results. The fix is to allow optional prefixes such as `find s/Dog b/Beagle` to restrict the search to specific fields, while keeping bare keyword search as a fallback for the general case.
 
-4. **Allow `pic/` to clear a photo:** Currently there is no way to remove a photo once it has been set on a pet — `editPet` requires `pic/` to point to a valid file. The fix is to treat `pic/` (with no argument) as a sentinel that clears the photo, consistent with how `t/` clears tags in `editClient`. This requires a change in `EditPetCommandParser` and `EditPetCommand` to distinguish between an absent `pic/` prefix and a present-but-empty one.
+4. **Improve duplicate-pet error message:** When `addPet` or `editPet` is rejected because a pet with the same name already exists for that owner, the error message says only "This pet already exists." The fix is to include the duplicate's name and owner in the message, e.g. `A pet named 'Max' already exists for client 87438807.`, so users can quickly identify the conflict.
 
-5. **Improve duplicate-pet error message:** When `addPet` or `editPet` is rejected because a pet with the same name already exists for that owner, the error message says only "This pet already exists." The fix is to include the duplicate's name and owner in the message, e.g. `A pet named 'Max' already exists for client 87438807.`, so users can quickly identify the conflict.
-
-6. **Make pet duplicate checking case-insensitive:** The current duplicate checking mechanism is case-sensitive. The fix is to edit the hasPet() method in UniquePersonsList.java and the Person class.
+5. **Make pet duplicate checking case-insensitive:** The current duplicate checking mechanism is case-sensitive. The fix is to edit the hasPet() method in UniquePersonsList.java and the Person class.
 
 6. **Enforce minimum phone number length:** Currently any non-empty string of digits is accepted as a phone number by `Phone`, including single-digit values. The fix is to enforce a minimum of 3 digits in `Phone#isValidPhone()`. Sample input that should be rejected: `p/1`, `p/12`.
 
