@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.Messages.MESSAGE_NO_CLIENTS;
 import static seedu.address.logic.Messages.MESSAGE_NO_PETS;
 
 import java.util.List;
